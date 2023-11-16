@@ -6,6 +6,7 @@ public class Phenix extends creature implements fly{
         super(name, type, weight, height, age, hunger, sleeping, health, cries);
     }
 
+    @Override
     public String fly() {
         if (isAlive()) {
             return Phenix.super.getName() + " est en train de voler";

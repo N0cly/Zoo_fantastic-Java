@@ -6,6 +6,7 @@ public class Kraken extends creature implements swim{
         super(name, type, weight, height, age, hunger, sleeping, health, cries);
     }
 
+    @Override
     public String swim() {
         return Kraken.super.getName() + " est en train de nager";
     }

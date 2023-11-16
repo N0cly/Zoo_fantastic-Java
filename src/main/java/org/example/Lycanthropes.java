@@ -6,6 +6,7 @@ public class Lycanthropes extends creature implements run{
         super(name, type, weight, height, age, hunger, sleeping, health, cries);
     }
 
+    @Override
     public String run() {
         if (isAlive()) {
             return Lycanthropes.super.getName() + " est en train de courir";
