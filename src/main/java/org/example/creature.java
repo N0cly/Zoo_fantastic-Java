@@ -5,7 +5,7 @@ public class creature {
     //Class for creature
 
     private String name;
-    private String type;
+    private Boolean type;
     private int weight;
     private int height;
     private int age;
@@ -17,7 +17,7 @@ public class creature {
     private boolean isAlive = true;
 
 
-    public creature(String name, String type, int weight, int height, int age, int hunger, boolean sleeping, int health, String cries) {
+    public creature(String name, Boolean type, int weight, int height, int age, int hunger, boolean sleeping, int health, String cries) {
         this.name = name;
         this.type = type;
         this.weight = weight;
@@ -29,6 +29,45 @@ public class creature {
         this.cries = cries;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(Boolean type) {
+        this.type = type;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHunger(int hunger) {
+        this.hunger = hunger;
+    }
+
+    public void setSleeping(boolean sleeping) {
+        this.sleeping = sleeping;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setCries(String cries) {
+        this.cries = cries;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
 
     public boolean isAlive() {
         return isAlive;
@@ -38,7 +77,7 @@ public class creature {
         return name;
     }
 
-    public String getType() {
+    public Boolean getType() {
         return type;
     }
 
@@ -72,7 +111,7 @@ public class creature {
 
     public void eat() {
         if (isAlive){
-            if (hunger < 100 && sleeping == false) {
+            if (hunger < 100 && !sleeping) {
                 hunger = hunger + 10;
                 System.out.println("You fed " + name + " and their hunger is now " + hunger);
             } else {
@@ -101,7 +140,7 @@ public class creature {
     public void sleep() {
 
         if (isAlive){
-            if (sleeping == false) {
+            if (!sleeping) {
                 sleeping = true;
                 System.out.println(name + " is now sleeping");
             } else {
@@ -115,7 +154,7 @@ public class creature {
 
     public void wake() {
         if (isAlive){
-            if (sleeping == true) {
+            if (sleeping) {
                 sleeping = false;
                 System.out.println(name + " is now awake");
             } else {
