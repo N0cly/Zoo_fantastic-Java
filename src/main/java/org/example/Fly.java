@@ -1,6 +1,6 @@
 package org.example;
 
-public interface fly {
+public interface Fly {
 
     public default String fly(String name, boolean isAlive) {
         if (isAlive) {

@@ -1,6 +1,6 @@
 package org.example;
 
-public interface run {
+public interface Run {
 
     public default String run(String name, boolean isAlive){
         if (isAlive) {

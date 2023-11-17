@@ -1,6 +1,6 @@
 package org.example;
 
-public class creature implements Runnable {
+public class Creature implements Runnable {
 
     // Class for creature
 
@@ -16,8 +16,8 @@ public class creature implements Runnable {
     private String cries;
     private boolean isAlive = true;
 
-    public creature(String name, Boolean type, int weight, int height, int age,
-            int health, String cries) {
+    public Creature(String name, Boolean type, int weight, int height, int age,
+                    int health, String cries) {
         this.name = name;
         this.type = type;
         this.weight = weight;

@@ -1,6 +1,6 @@
 package org.example;
 
-public interface swim {
+public interface Swim {
 
     public default String swim(String name, boolean isAlive){
         if (isAlive) {
