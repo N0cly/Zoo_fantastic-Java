@@ -6,8 +6,5 @@ public class Megalodons extends creature implements swim {
         super(name, type, weight, height, age, hunger, sleeping, health, cries);
     }
 
-    @Override
-    public String swim() {
-        return Megalodons.super.getName() + " est en train de nager";
-    }
+
 }
