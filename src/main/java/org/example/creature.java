@@ -1,32 +1,43 @@
 package org.example;
 
-public class creature {
+public class creature implements Runnable {
 
-    //Class for creature
+    // Class for creature
 
     private String name;
     private Boolean type;
     private int weight;
     private int height;
-    private int age;
-    private int hunger;
+    protected int age;
+    private int hunger = 100;
     private boolean sleeping;
     private int health;
 
     private String cries;
     private boolean isAlive = true;
 
-
-    public creature(String name, Boolean type, int weight, int height, int age, int hunger, boolean sleeping, int health, String cries) {
+    public creature(String name, Boolean type, int weight, int height, int age,
+            int health, String cries) {
         this.name = name;
         this.type = type;
         this.weight = weight;
         this.height = height;
         this.age = age;
-        this.hunger = hunger;
-        this.sleeping = sleeping;
         this.health = health;
         this.cries = cries;
+    }
+
+    public void hunger() {
+        while (this.hunger > 15) {
+            this.hunger = this.hunger - 1;
+            if (hunger % 10 == 0) {
+                System.out.println(" Il reste " + this.hunger + " à " + this.name);
+            }
+            if (hunger <= 15) {
+                System.out.println("Il est temps de manger pour " + this.name + " (" + this.hunger + " )");
+            }
+        }
+
     }
 
     public void setName(String name) {
@@ -110,7 +121,7 @@ public class creature {
     }
 
     public void eat() {
-        if (isAlive){
+        if (isAlive) {
             if (hunger < 100 && !sleeping) {
                 hunger = hunger + 10;
                 System.out.println("You fed " + name + " and their hunger is now " + hunger);
@@ -123,8 +134,8 @@ public class creature {
 
     }
 
-    public void heal(){
-        if (isAlive){
+    public void heal() {
+        if (isAlive) {
             if (health < 100) {
                 health = health + 10;
                 System.out.println("You healed " + name + " and their health is now " + health);
@@ -139,7 +150,7 @@ public class creature {
 
     public void sleep() {
 
-        if (isAlive){
+        if (isAlive) {
             if (!sleeping) {
                 sleeping = true;
                 System.out.println(name + " is now sleeping");
@@ -153,7 +164,7 @@ public class creature {
     }
 
     public void wake() {
-        if (isAlive){
+        if (isAlive) {
             if (sleeping) {
                 sleeping = false;
                 System.out.println(name + " is now awake");
@@ -167,7 +178,7 @@ public class creature {
     }
 
     public void old() {
-        if (isAlive){
+        if (isAlive) {
             if (age < 100) {
                 age = age + 1;
                 System.out.println(name + " is now " + age + " years old");
@@ -178,6 +189,12 @@ public class creature {
             }
         } else {
             System.out.println(name + " is dead");
+        }
+    }
+
+    public void run() {
+        if (isAlive) {
+            hunger();
         }
 
     }
