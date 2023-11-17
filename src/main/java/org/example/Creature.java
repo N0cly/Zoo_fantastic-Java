@@ -1,6 +1,6 @@
 package org.example;
 
-public class Creature implements Runnable {
+public class Creature {
 
     // Class for creature
 
@@ -9,15 +9,15 @@ public class Creature implements Runnable {
     private int weight;
     private int height;
     protected int age;
-    private int hunger = 100;
+    private double hunger;
     private boolean sleeping;
     private int health;
 
     private String cries;
-    private boolean isAlive = true;
+    private boolean isAlive;
 
     public Creature(String name, Boolean type, int weight, int height, int age,
-                    int health, String cries) {
+            int health, String cries) {
         this.name = name;
         this.type = type;
         this.weight = weight;
@@ -25,18 +25,42 @@ public class Creature implements Runnable {
         this.age = age;
         this.health = health;
         this.cries = cries;
+        this.hunger = 100;
+        this.sleeping = false;
+        this.isAlive = true;
     }
 
-    public void hunger() {
+    public Runnable hunger() {
         while (this.hunger > 15) {
-            this.hunger = this.hunger - 1;
-            if (hunger % 10 == 0) {
-                System.out.println(" Il reste " + this.hunger + " à " + this.name);
+            try {
+                this.hunger = this.hunger - 1;
+                if (hunger % 10 == 0) {
+                    System.out.println(" Il reste " + this.hunger + " à " + this.name);
+                }
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-            if (hunger <= 15) {
-                System.out.println("Il est temps de manger pour " + this.name + " (" + this.hunger + " )");
-            }
+
         }
+        while (hunger <= 15) {
+            try {
+                System.out.println("Il est temps de manger pour " + this.name + " (" + this.hunger + " )");
+                this.hunger = this.hunger - 1;
+                if (this.hunger == 0) {
+                    System.out.println(this.name + " est mort de famine.");
+                    this.isAlive = false;
+                    break;
+                }
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        }
+        return null;
 
     }
 
@@ -104,7 +128,7 @@ public class Creature implements Runnable {
         return age;
     }
 
-    public int getHunger() {
+    public double getHunger() {
         return hunger;
     }
 
@@ -190,13 +214,6 @@ public class Creature implements Runnable {
         } else {
             System.out.println(name + " is dead");
         }
-    }
-
-    public void run() {
-        if (isAlive) {
-            hunger();
-        }
-
     }
 
 }
