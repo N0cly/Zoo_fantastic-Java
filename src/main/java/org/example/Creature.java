@@ -1,6 +1,6 @@
 package org.example;
 
-public class Creature {
+abstract public class Creature {
 
     // Class for creature
 
@@ -15,6 +15,8 @@ public class Creature {
 
     private String cries;
     private boolean isAlive;
+
+    private static CreatureManager creatureManager = new CreatureManager();
 
     public Creature(String name, Boolean type, int weight, int height, int age,
             int health, String cries) {

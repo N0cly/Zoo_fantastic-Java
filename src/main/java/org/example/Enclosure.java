@@ -10,7 +10,6 @@ public class Enclosure {
     private final List<Creature> creatures;
     private Cleanliness cleanliness;
 
-
     public Enclosure(String name, double area, int maxCapacity) {
         this.name = name;
         this.area = area;
@@ -44,7 +43,6 @@ public class Enclosure {
             System.out.println(creature.getName());
         }
     }
-
 
     public String getName() {
         return name;
