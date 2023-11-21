@@ -6,14 +6,20 @@ import java.util.ArrayList;
 
 public class CreatureManager {
     private static List<Creature> creatures;
+    private static List<Thread> creatureThreads;
 
     public CreatureManager() {
         this.creatures = new ArrayList<>();
+        this.creatureThreads = new ArrayList<>();
         // Initialisez vos créatures ici si nécessaire
     }
 
     public static void addCreature(Creature creature) {
         creatures.add(creature);
+
+        Thread creatureThread = new Thread(creature);
+        creatureThreads.add(creatureThread);
+        creatureThread.start();
     }
 
     public static List<Creature> getCreatures() {
@@ -194,6 +200,9 @@ public class CreatureManager {
 
                     Dragon newDragon = new Dragon(name, type, weight, height, age, health, "Cri du Dragon");
                     addCreature(newDragon);
+                    Thread creatureThread = new Thread(newDragon);
+                    creatureThreads.add(creatureThread);
+                    creatureThread.start();
                     System.out.println("Dragon ajouté avec succès !");
                     break;
                 case 2:

@@ -1,6 +1,6 @@
 package org.example;
 
-abstract public class Creature {
+abstract public class Creature implements Runnable {
 
     // Class for creature
 
@@ -32,13 +32,15 @@ abstract public class Creature {
         this.isAlive = true;
     }
 
-    public Runnable hunger() {
+    @Override
+    public void run() {
+        hunger();
+    }
+
+    public void hunger() {
         while (this.hunger > 15) {
             try {
                 this.hunger = this.hunger - 1;
-                if (hunger % 10 == 0) {
-                    System.out.println(" Il reste " + this.hunger + " à " + this.name);
-                }
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
@@ -62,7 +64,6 @@ abstract public class Creature {
             }
 
         }
-        return null;
 
     }
 

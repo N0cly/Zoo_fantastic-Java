@@ -6,9 +6,4 @@ public class Dragon extends Creature implements Run, Swim, Fly, Oviparous {
             String cries) {
         super(name, type, weight, height, age, health, cries);
     }
-
-    public void run() {
-        Thread hunger = new Thread(hunger());
-        hunger.start();
-    }
 }
