@@ -38,33 +38,26 @@ abstract public class Creature implements Runnable {
     }
 
     public void hunger() {
-        while (this.hunger > 15) {
+        while (this.hunger > 0) {
             try {
                 this.hunger = this.hunger - 1;
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
 
-        }
-        while (hunger <= 15) {
-            try {
-                System.out.println("Il est temps de manger pour " + this.name + " (" + this.hunger + " )");
-                this.hunger = this.hunger - 1;
-                if (this.hunger == 0) {
-                    System.out.println(this.name + " est mort de famine.");
-                    this.isAlive = false;
-                    break;
+                if (this.hunger <= 15) {
+                    System.out.println("Il est temps de manger pour " + this.name + " (" + this.hunger + " )");
+
+                    Thread.sleep(1000);
+
+                    if (this.hunger == 0) {
+                        System.out.println(this.name + " est mort de famine.");
+                        this.isAlive = false;
+                        break;
+                    }
                 }
-                Thread.sleep(1500);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
         }
-
     }
 
     public void setName(String name) {
