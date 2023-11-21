@@ -12,7 +12,7 @@ public class CreatureManager {
         // Initialisez vos créatures ici si nécessaire
     }
 
-    public void addCreature(Creature creature) {
+    public static void addCreature(Creature creature) {
         creatures.add(creature);
     }
 
@@ -26,10 +26,11 @@ public class CreatureManager {
         System.out.println("2. Gérer les enclos");
         System.out.println("3. Simuler le passage du temps");
         System.out.println("4. Quitter");
+        System.out.print("Choisissez une option : ");
     }
 
     public static void displayCreatureMenu() {
-        System.out.println("===== Gérer les Créatures =====");
+        System.out.println("===== Gérer les Créatures =====s");
         System.out.println("1. Afficher les créatures");
         System.out.println("2. Ajouter une créature");
         System.out.println("3. Soigner une créature");
@@ -50,10 +51,10 @@ public class CreatureManager {
         }
     }
 
-    public void afficherMenuCreationCreature() {
+    public static void afficherMenuCreationCreature() {
         System.out.println("1. Dragon");
 
-        System.out.println("3. Retour au menu principal");
+        System.out.println("2. Retour au menu principal");
     }
 
     static void runEnclosureMenu() {
@@ -102,6 +103,7 @@ public class CreatureManager {
                 case 2:
                     // Ajouter la logique pour ajouter une créature
                     System.out.println("Ajout d'une créature...");
+                    addCreatureFromUserInput();
                     break;
                 case 3:
                     // Ajouter la logique pour soigner une créature
@@ -116,14 +118,14 @@ public class CreatureManager {
         } while (creatureChoice != 4);
     }
 
-    public void addCreatureFromUserInput() {
+    public static void addCreatureFromUserInput() {
         Scanner scanner = new Scanner(System.in);
 
         int creatureChoice;
 
         do {
             System.out.println("Ajout d'une nouvelle créature...");
-            System.out.print("Quelle Creature souhaitez-vous créer? ");
+            System.out.println("Quelle Creature souhaitez-vous créer? ");
             afficherMenuCreationCreature();
             creatureChoice = scanner.nextInt();
 
@@ -135,15 +137,19 @@ public class CreatureManager {
                     addCreature(newDragon);
                     System.out.println("Dragon ajouté avec succès !");
                     break;
-
-                case 3:
+                case 2:
                     System.out.println("Retour au menu principal.");
                     break;
                 default:
                     System.out.println("Option invalide. Veuillez choisir à nouveau.");
             }
-        } while (creatureChoice != 3);
 
-        scanner.close();
+            if (creatureChoice == 2) {
+                break;
+            }
+        } while (creatureChoice != 2);
+
+        // Ne fermez pas le scanner ici, fermez-le à la fin du programme.
     }
+
 }

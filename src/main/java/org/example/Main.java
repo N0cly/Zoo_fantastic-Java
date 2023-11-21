@@ -13,7 +13,6 @@ public class Main {
 
         do {
             CreatureManager.displayMainMenu();
-            System.out.print("Choisissez une option : ");
             mainChoice = scanner.nextInt();
 
             switch (mainChoice) {
