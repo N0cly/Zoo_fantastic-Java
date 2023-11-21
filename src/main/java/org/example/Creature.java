@@ -5,6 +5,7 @@ public class Creature {
     // Class for creature
 
     private String name;
+    private String species;
     private Boolean type;
     private int weight;
     private int height;
@@ -16,9 +17,9 @@ public class Creature {
     private String cries;
     private boolean isAlive;
 
-    public Creature(String name, Boolean type, int weight, int height, int age,
-            int health, String cries) {
+    public Creature(String name, String species, Boolean type, int weight, int height, int age, int health, String cries) {
         this.name = name;
+        this.species = species;
         this.type = type;
         this.weight = weight;
         this.height = height;
@@ -67,6 +68,10 @@ public class Creature {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getSpecies() { return species; }
+
+    public void setSpecies(String species) { this.species = species; }
 
     public void setType(Boolean type) {
         this.type = type;
@@ -214,6 +219,14 @@ public class Creature {
         } else {
             System.out.println(name + " is dead");
         }
+    }
+    @Override
+    public String toString() {
+        return "Créature{" +
+                "nom='" + name + '\'' +
+                ", espèce='" + species + '\'' +
+                ", âge=" + age +
+                '}';
     }
 
 }

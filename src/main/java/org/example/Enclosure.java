@@ -11,12 +11,12 @@ public class Enclosure {
     private Cleanliness cleanliness;
 
 
-    public Enclosure(String name, double area, int maxCapacity) {
+    public Enclosure(String name, double area, int maxCapacity, List<Creature> creatures, Cleanliness cleanliness) {
         this.name = name;
         this.area = area;
         this.maxCapacity = maxCapacity;
-        this.creatures = new ArrayList<>();
-        this.cleanliness = Cleanliness.BON; // Valeur initiale
+        this.creatures = creatures;
+        this.cleanliness = cleanliness;
     }
 
     // Ajoute une créature à l'enclos
@@ -40,11 +40,32 @@ public class Enclosure {
         System.out.println("Capacité maximale: " + maxCapacity);
         System.out.println("Propreté: " + cleanliness);
         System.out.println("Créatures présentes: ");
+        System.out.println("Nombre de créatures: " + getNumberOfCreatures());
         for (Creature creature : creatures) {
             System.out.println(creature.getName());
         }
+        if (!creatures.isEmpty()) {
+            System.out.println("Créatures présentes:");
+            for (Creature creature : creatures) {
+                System.out.println(creature);
+            }
+        } else {
+            System.out.println("Aucune créature présente.");
+        }
+    }
+    public void maintainEnclosure() {
+        if (creatures.isEmpty() && cleanliness != Cleanliness.BON) {
+            cleanliness = Cleanliness.BON;
+            System.out.println("L'enclos a été nettoyé et est maintenant en bon état.");
+        } else {
+            System.out.println("L'entretien de l'enclos n'est pas possible actuellement.");
+        }
     }
 
+
+    public int getNumberOfCreatures() {
+        return creatures.size();
+    }
 
     public String getName() {
         return name;
