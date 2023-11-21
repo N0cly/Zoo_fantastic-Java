@@ -5,8 +5,6 @@ import java.util.Scanner;
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static Phenix phenix = new Phenix("Phenix", true, 110, 110, 0, 100, false, 0, null);
-    private static Enclosure enclos = new Enclosure("Enclos 1", 100, 3);
 
     public static void main(String[] args) {
         int mainChoice;
