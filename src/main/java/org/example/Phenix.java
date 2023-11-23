@@ -1,10 +1,14 @@
 package org.example;
 
-public class Phenix extends Creature implements Fly, Oviparous {
+public class Phenix extends Creature implements Fly, Oviparous, FlyingCreature {
 
-    public Phenix(String name, Boolean type, int weight, int height, int age, int hunger, boolean sleeping, int health,
+    public Phenix(String name, String species, Boolean type, int weight, int height, int age, int hunger, boolean sleeping, int health,
             String cries) {
-        super(name, type, weight, height, age, health, cries);
+        super(name, species, type, weight, height, age, health, cries);
     }
 
+    @Override
+    public void fly() {
+        System.out.println("Le Phenix s'élève dans les airs.");
+    }
 }
