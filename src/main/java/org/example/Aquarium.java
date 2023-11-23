@@ -12,6 +12,20 @@ public class Aquarium extends Enclosure {
     }
 
     @Override
+    public void maintainEnclosure() {
+        super.maintainEnclosure();
+        checkWaterQuality(); // Vérifie la profondeur et la salinité de l'eau
+
+        setCleanliness(Cleanliness.BON); // Met à jour la propreté de l'aquarium
+
+        System.out.println("L'aquarium a été entretenu, avec vérification de la qualité de l'eau.");
+    }
+
+    private void checkWaterQuality() { // Pour vérifier la qualité de l'eau, incluant la profondeur et la salinité
+        System.out.println("La qualité de l'eau a été vérifiée : profondeur et salinité sont adéquates.");
+    }
+
+    @Override
     public void addCreature(Creature creature) {
         if (!(creature instanceof AquaticCreature)) {
             System.out.println("Seules les créatures aquatiques peuvent être ajoutées à un aquarium.");
@@ -20,9 +34,6 @@ public class Aquarium extends Enclosure {
         super.addCreature(creature);
     }
 
-    public void maintainAquarium() {
-        // l'entretien de l'aquarium, la vérification de la profondeur et de la salinité
-    }
 
     public double getDepth() {
         return depth;

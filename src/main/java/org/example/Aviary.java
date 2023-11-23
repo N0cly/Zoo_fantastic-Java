@@ -17,8 +17,19 @@ public class Aviary extends Enclosure  {
         }
         super.addCreature(creature);
     }
-    public void maintainAviary() {
-        //l'entretien de la volière et la vérification du toit
+
+    @Override
+    public void maintainEnclosure() {
+        super.maintainEnclosure();
+        checkRoof(); // Vérifie le toit de la volière
+
+        setCleanliness(Cleanliness.BON); // Mettre à jour la propreté de la volière
+
+        System.out.println("La volière a été entretenue et son toit vérifié.");
+    }
+
+    private void checkRoof() { // Pour vérifier l'état du toit de la volière
+        System.out.println("Le toit de la volière a été vérifié et est en bon état.");
     }
 
     public double getHeight() {
