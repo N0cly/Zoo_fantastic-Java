@@ -62,6 +62,15 @@ public class Enclosure {
         }
     }
 
+    public void feedCreatures() {// Pour nourrir toutes les créatures de l'enclos
+        if (!creatures.isEmpty()) {
+            for (Creature creature : creatures) {
+                creature.eat();
+            }
+        } else {
+            System.out.println("Il n'y a pas de créatures à nourrir dans l'enclos " + name);
+        }
+    }
 
     public int getNumberOfCreatures() {
         return creatures.size();
@@ -102,4 +111,5 @@ public class Enclosure {
     public void setCleanliness(Cleanliness cleanliness) {
         this.cleanliness = cleanliness;
     }
+
 }

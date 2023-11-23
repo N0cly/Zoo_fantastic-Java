@@ -23,7 +23,7 @@ public class Aviary extends Enclosure  {
         super.maintainEnclosure();
         checkRoof(); // Vérifie le toit de la volière
 
-        setCleanliness(Cleanliness.BON); // Mettre à jour la propreté de la volière
+        setCleanliness(Cleanliness.BON); // Met à jour la propreté de la volière
 
         System.out.println("La volière a été entretenue et son toit vérifié.");
     }
@@ -32,11 +32,7 @@ public class Aviary extends Enclosure  {
         System.out.println("Le toit de la volière a été vérifié et est en bon état.");
     }
 
-    public double getHeight() {
-        return height;
-    }
+    public double getHeight() { return height; }
 
-    public void setHeight(double height) {
-        this.height = height;
-    }
+    public void setHeight(double height) { this.height = height; }
 }
