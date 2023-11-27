@@ -27,7 +27,7 @@ abstract public class Creature implements Runnable {
         this.age = age;
         this.health = health;
         this.cries = cries;
-        this.hunger = 100;
+        this.hunger = 20;
         this.sleeping = false;
         this.isAlive = true;
     }
@@ -38,7 +38,7 @@ abstract public class Creature implements Runnable {
     }
 
     public void hunger() {
-        while (this.hunger > 0) {
+        while (this.isAlive && this.hunger > 0) {
             try {
                 this.hunger = this.hunger - 1;
                 Thread.sleep(1000);
@@ -51,10 +51,13 @@ abstract public class Creature implements Runnable {
                     if (this.hunger == 0) {
                         System.out.println(this.name + " est mort de famine.");
                         this.isAlive = false;
+                        CreatureManager.removeCreature(this); // Supprimer la créature de la liste
+                        Thread.currentThread().interrupt(); // Interruption du thread
                         break;
                     }
                 }
             } catch (InterruptedException e) {
+                Thread.currentThread().interrupt(); // Rétablit le statut d'interruption avant de sortir
                 e.printStackTrace();
             }
         }

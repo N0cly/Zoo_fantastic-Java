@@ -48,17 +48,26 @@ public class CreatureManager {
         System.out.println("3. Retour au menu principal");
     }
 
-    public static void displayCreatures() {
-        System.out.println("===== Liste des Créatures =====");
-        for (Creature creature : creatures) {
-            System.out.println("Name : " + creature.getName() + " | " + "Hunger : " + creature.getHunger());
-        }
-    }
-
     public static void afficherMenuCreationCreature() {
         System.out.println("1. Dragon");
 
         System.out.println("2. Retour au menu Gestion Creature");
+    }
+
+    public static void displayCreatures() {
+        System.out.println("===== Liste des Créatures =====");
+
+        if (creatures != null) {
+            for (Creature creature : creatures) {
+                System.out.println("Name : " + creature.getName() + " | " + "Hunger : " + creature.getHunger());
+            }
+        } else {
+            System.out.println("La liste de créatures est nulle.");
+        }
+    }
+
+    public static void removeCreature(Creature creature) {
+        creatures.remove(creature);
     }
 
     static void runEnclosureMenu() {
