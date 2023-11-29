@@ -31,38 +31,35 @@ public class Creature {
         this.isAlive = true;
     }
 
-    public Runnable hunger() {
-        while (this.hunger > 15) {
+    @Override
+    public void run() {
+        hunger();
+    }
+
+    public void hunger() {
+        while (this.isAlive && this.hunger > 0) {
             try {
                 this.hunger = this.hunger - 1;
-                if (hunger % 10 == 0) {
-                    System.out.println(" Il reste " + this.hunger + " à " + this.name);
-                }
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
 
-        }
-        while (hunger <= 15) {
-            try {
-                System.out.println("Il est temps de manger pour " + this.name + " (" + this.hunger + " )");
-                this.hunger = this.hunger - 1;
-                if (this.hunger == 0) {
-                    System.out.println(this.name + " est mort de famine.");
-                    this.isAlive = false;
-                    break;
+                if (this.hunger <= 15) {
+                    System.out.println("Il est temps de manger pour " + this.name + " (" + this.hunger + " )");
+
+                    Thread.sleep(1000);
+
+                    if (this.hunger == 0) {
+                        System.out.println(this.name + " est mort de famine.");
+                        this.isAlive = false;
+                        CreatureManager.removeCreature(this); // Supprimer la créature de la liste
+                        Thread.currentThread().interrupt(); // Interruption du thread
+                        break;
+                    }
                 }
-                Thread.sleep(1500);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
+                Thread.currentThread().interrupt(); // Rétablit le statut d'interruption avant de sortir
                 e.printStackTrace();
             }
-
         }
-        return null;
-
     }
 
     public void setName(String name) {

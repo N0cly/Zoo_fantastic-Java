@@ -111,5 +111,4 @@ public class Enclosure {
     public void setCleanliness(Cleanliness cleanliness) {
         this.cleanliness = cleanliness;
     }
-
 }
