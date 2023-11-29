@@ -1,6 +1,6 @@
 package org.example;
 
-public class Creature {
+public class Creature implements Runnable {
 
     // Class for creature
 
@@ -17,9 +17,10 @@ public class Creature {
     private String cries;
     private boolean isAlive;
 
-    public Creature(String name, String species, Boolean type, int weight, int height, int age, int health, String cries) {
+    public Creature(String name, String species2, Boolean type, int weight, int height, int age, int health,
+            String cries) {
         this.name = name;
-        this.species = species;
+        this.species = "Dragon";
         this.type = type;
         this.weight = weight;
         this.height = height;
@@ -37,7 +38,7 @@ public class Creature {
     }
 
     public void hunger() {
-        while (this.isAlive && this.hunger > 0) {
+        while (this.hunger > 0 && !Thread.interrupted()) {
             try {
                 this.hunger = this.hunger - 1;
                 Thread.sleep(1000);
@@ -50,14 +51,12 @@ public class Creature {
                     if (this.hunger == 0) {
                         System.out.println(this.name + " est mort de famine.");
                         this.isAlive = false;
-                        CreatureManager.removeCreature(this); // Supprimer la créature de la liste
-                        Thread.currentThread().interrupt(); // Interruption du thread
                         break;
                     }
                 }
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt(); // Rétablit le statut d'interruption avant de sortir
-                e.printStackTrace();
+                // Gérer l'interruption si nécessaire
+                Thread.currentThread().interrupt(); // Rétablir le statut d'interruption
             }
         }
     }
@@ -66,9 +65,13 @@ public class Creature {
         this.name = name;
     }
 
-    public String getSpecies() { return species; }
+    public String getSpecies() {
+        return species;
+    }
 
-    public void setSpecies(String species) { this.species = species; }
+    public void setSpecies(String species) {
+        this.species = species;
+    }
 
     public void setType(Boolean type) {
         this.type = type;
@@ -217,6 +220,7 @@ public class Creature {
             System.out.println(name + " is dead");
         }
     }
+
     @Override
     public String toString() {
         return "Créature{" +

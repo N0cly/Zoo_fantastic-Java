@@ -11,7 +11,6 @@ public class Main {
 
     public static void main(String[] args) {
         int mainChoice;
-
         do {
             CreatureManager.displayMainMenu();
             mainChoice = scanner.nextInt();
@@ -36,6 +35,7 @@ public class Main {
                     System.out.println("Option invalide. Veuillez choisir à nouveau.");
             }
         } while (mainChoice != 4);
+        CreatureManager.closeScanner();
     }
 
     private static void startCreatureThreads() {

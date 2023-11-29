@@ -10,7 +10,6 @@ public class Enclosure {
     private final List<Creature> creatures;
     private Cleanliness cleanliness;
 
-
     public Enclosure(String name, double area, int maxCapacity, List<Creature> creatures, Cleanliness cleanliness) {
         this.name = name;
         this.area = area;
@@ -39,7 +38,7 @@ public class Enclosure {
         System.out.println("Superficie: " + area + " mètres carrés");
         System.out.println("Capacité maximale: " + maxCapacity);
         System.out.println("Propreté: " + cleanliness);
-        System.out.println("Créatures présentes: ");
+        System.out.println("Créatures présentes: ");// TODO
         System.out.println("Nombre de créatures: " + getNumberOfCreatures());
         for (Creature creature : creatures) {
             System.out.println(creature.getName());
@@ -53,6 +52,7 @@ public class Enclosure {
             System.out.println("Aucune créature présente.");
         }
     }
+
     public void maintainEnclosure() {
         if (creatures.isEmpty() && cleanliness != Cleanliness.BON) {
             cleanliness = Cleanliness.BON;

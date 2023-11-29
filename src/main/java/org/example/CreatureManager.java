@@ -7,11 +7,11 @@ import java.util.ArrayList;
 public class CreatureManager {
     private static List<Creature> creatures;
     private static List<Thread> creatureThreads;
+    private static Scanner scanner = new Scanner(System.in);
 
     public CreatureManager() {
-        this.creatures = new ArrayList<>();
-        this.creatureThreads = new ArrayList<>();
-        // Initialisez vos créatures ici si nécessaire
+        CreatureManager.creatures = new ArrayList<>();
+        CreatureManager.creatureThreads = new ArrayList<>();
     }
 
     public static void addCreature(Creature creature) {
@@ -66,71 +66,72 @@ public class CreatureManager {
         }
     }
 
-    public static void removeCreature(Creature creature) {
+    public void removeCreature(Creature creature) {
         creatures.remove(creature);
     }
 
     static void runEnclosureMenu() {
 
-        Scanner scanner = new Scanner(System.in);
-        int enclosureChoice;
+        try (Scanner scanner = new Scanner(System.in)) {
+            int enclosureChoice;
 
-        do {
-            displayEnclosureMenu();
-            System.out.print("Choisissez une option : ");
-            enclosureChoice = scanner.nextInt();
+            do {
+                displayEnclosureMenu();
+                System.out.print("Choisissez une option : ");
+                enclosureChoice = scanner.nextInt();
 
-            switch (enclosureChoice) {
-                case 1:
-                    // Ajouter la logique pour afficher les enclos
-                    System.out.println("Affichage des enclos...");
-                    break;
-                case 2:
-                    // Ajouter la logique pour ajouter un enclos
-                    System.out.println("Ajout d'un enclos...");
-                    break;
-                case 3:
-                    System.out.println("Retour au menu principal.");
-                    break;
-                default:
-                    System.out.println("Option invalide. Veuillez choisir à nouveau.");
-            }
-        } while (enclosureChoice != 3);
+                switch (enclosureChoice) {
+                    case 1:
+                        // Ajouter la logique pour afficher les enclos
+                        System.out.println("Affichage des enclos...");
+                        break;
+                    case 2:
+                        // Ajouter la logique pour ajouter un enclos
+                        System.out.println("Ajout d'un enclos...");
+                        break;
+                    case 3:
+                        System.out.println("Retour au menu principal.");
+                        break;
+                    default:
+                        System.out.println("Option invalide. Veuillez choisir à nouveau.");
+                }
+            } while (enclosureChoice != 3);
+        }
     }
 
     static void runCreatureMenu() {
 
-        Scanner scanner = new Scanner(System.in);
-        int creatureChoice;
+        try (Scanner scanner = new Scanner(System.in)) {
+            int creatureChoice;
 
-        do {
-            displayCreatureMenu();
-            System.out.print("Choisissez une option : ");
-            creatureChoice = scanner.nextInt();
+            do {
+                displayCreatureMenu();
+                System.out.print("Choisissez une option : ");
+                creatureChoice = scanner.nextInt();
 
-            switch (creatureChoice) {
-                case 1:
-                    System.out.println("Affichage des créatures...");
-                    displayCreatures();
-                    break;
-                case 2:
-                    System.out.println("Ajout d'une créature...");
-                    addCreatureFromUserInput();
-                    break;
-                case 3:
-                    System.out.println("Soigner une créature...");
-                    break;
-                case 4:
-                    System.out.println("Retour au menu principal.");
-                    break;
-                default:
-                    System.out.println("Option invalide. Veuillez choisir à nouveau.");
-            }
-        } while (creatureChoice != 4);
+                switch (creatureChoice) {
+                    case 1:
+                        System.out.println("Affichage des créatures...");
+                        displayCreatures();
+                        break;
+                    case 2:
+                        System.out.println("Ajout d'une créature...");
+                        addCreatureFromUserInput();
+                        break;
+                    case 3:
+                        System.out.println("Soigner une créature...");
+                        break;
+                    case 4:
+                        System.out.println("Retour au menu principal.");
+                        break;
+                    default:
+                        System.out.println("Option invalide. Veuillez choisir à nouveau.");
+                }
+            } while (creatureChoice != 4);
+        }
     }
 
     public static void addCreatureFromUserInput() {
-        Scanner scanner = new Scanner(System.in);
 
         int creatureChoice;
 
@@ -207,7 +208,8 @@ public class CreatureManager {
                         health = Integer.parseInt(healthInput);
                     }
 
-                    Dragon newDragon = new Dragon(name, type, weight, height, age, health, "Cri du Dragon");
+                    Dragon newDragon = new Dragon(name, "Dragon", type, weight, height, age, health,
+                            "Cri du Dragon");
                     addCreature(newDragon);
                     Thread creatureThread = new Thread(newDragon);
                     creatureThreads.add(creatureThread);
@@ -216,6 +218,9 @@ public class CreatureManager {
                     break;
                 case 2:
                     System.out.println("Retour au menu principal.");
+                    if (scanner.hasNextInt()) {
+                        scanner.nextInt(); // Consommer l'entrée pour éviter NoSuchElementException
+                    }
                     break;
                 default:
                     System.out.println("Option invalide. Veuillez choisir à nouveau.");
@@ -225,6 +230,18 @@ public class CreatureManager {
                 break;
             }
         } while (creatureChoice != 2);
+    }
+
+    public void addCreatureThread(Thread creatureThread) {
+        creatureThreads.add(creatureThread);
+    }
+
+    public List<Thread> getCreatureThreads() {
+        return creatureThreads;
+    }
+
+    public static void closeScanner() {
+        scanner.close();
     }
 
     private static boolean isNumeric(String str) {
