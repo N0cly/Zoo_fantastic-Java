@@ -8,6 +8,7 @@ public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
     private static List<Thread> creatureThreads = new ArrayList<>();
+    static CreatureManager creatureManager = new CreatureManager();
 
     public static void main(String[] args) {
         int mainChoice;
@@ -17,10 +18,10 @@ public class Main {
 
             switch (mainChoice) {
                 case 1:
-                    CreatureManager.runCreatureMenu();
+                    creatureManager.runCreatureMenu();
                     break;
                 case 2:
-                    CreatureManager.runEnclosureMenu();
+                    creatureManager.runEnclosureMenu();
                     break;
                 case 3:
                     // Ajouter la logique pour simuler le passage du temps
@@ -35,11 +36,11 @@ public class Main {
                     System.out.println("Option invalide. Veuillez choisir à nouveau.");
             }
         } while (mainChoice != 4);
-        CreatureManager.closeScanner();
+        creatureManager.closeScanner();
     }
 
     private static void startCreatureThreads() {
-        for (Creature creature : CreatureManager.getCreatures()) {
+        for (Creature creature : creatureManager.getCreatures()) {
             Thread creatureThread = new Thread(creature);
             creatureThreads.add(creatureThread);
             creatureThread.start();
