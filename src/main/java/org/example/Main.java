@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static Scanner scanner = new Scanner(System.in);
-    private static List<Thread> creatureThreads = new ArrayList<>();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final List<Thread> creatureThreads = new ArrayList<>();
     static CreatureManager creatureManager = new CreatureManager();
 
     public static void main(String[] args) {

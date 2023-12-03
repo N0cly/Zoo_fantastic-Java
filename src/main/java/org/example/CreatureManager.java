@@ -34,6 +34,7 @@ public class CreatureManager {
         System.out.print("Choisissez une option : ");
     }
 
+
     public static void displayCreatureMenu() {
         System.out.println("===== Gérer les Créatures =====s");
         System.out.println("1. Afficher les créatures");
@@ -68,6 +69,110 @@ public class CreatureManager {
 
     public void removeCreature(Creature creature) {
         creatures.remove(creature);
+    }
+
+    public static String nameCreature() {
+        System.out.print("Nom de la créature : ");
+        String name = scanner.nextLine().trim();
+        while (name.isEmpty() || name.isBlank()) {
+            System.out.println("Il faut donner un nom à la créature !");
+            System.out.print("Nom de la créature : ");
+            name = scanner.nextLine().trim();
+        }
+        System.out.println("Nom : "+ name);
+        return name;
+    }
+
+    public static boolean typeCreature() {
+        System.out.print("Male(M) ou Femelle(F) (defaut F): ");
+        String stype = scanner.nextLine().trim();
+        if (!stype.isEmpty()){
+            while (!stype.equals("M") ||!stype.equals("F")||!stype.equals("")){
+                System.out.println("Caractere saisi incorrect");
+                System.out.print("Male(M) ou Femelle(F) (defaut F): ");
+                stype = scanner.nextLine().trim();
+                if ("M".equals(stype)) {
+                    System.out.println("Type : Male");
+                    return true;
+                }else if ("F".equals(stype)) {
+                    System.out.println("Type : Femelle");
+                    return false;
+                }
+            }
+        }
+        if ("M".equals(stype)) {
+            System.out.println("Type : Male");
+            return true;
+        }else if ("F".equals(stype)) {
+            System.out.println("Type : Femelle");
+            return false;
+        }
+        System.out.println("Type par défaut : Femelle");
+        return false;
+    }
+
+    public static int weightCreature() {
+        System.out.print("Poids de la créature (defaut = 80) : ");
+        String weightInput = scanner.nextLine().trim();
+        if (!weightInput.isEmpty()) {
+            while (!isNumeric(weightInput)) {
+                System.out.println("Veuillez entrer un nombre entier.");
+                System.out.print("Poids de la créature (defaut = 80) : ");
+                weightInput = scanner.nextLine().trim();
+            }
+            System.out.println("Poids : "+ weightInput);
+            return Integer.parseInt(weightInput);
+        }
+        System.out.println("Poids par défaut : 80");
+        return 80;
+    }
+
+    public static int heightCreature() {
+        System.out.print("Taille de la créature (defaut = 110) : ");
+        String heightInput = scanner.nextLine().trim();
+        if (!heightInput.isEmpty()) {
+            while (!isNumeric(heightInput)) {
+                System.out.println("Veuillez entrer un nombre entier.");
+                System.out.print("Taille de la créature (defaut = 110) : ");
+                heightInput = scanner.nextLine().trim();
+            }
+            System.out.println("Taille : "+ heightInput);
+            return Integer.parseInt(heightInput);
+        }
+        System.out.println("Taille par défaut : 110");
+        return 110;
+    }
+
+    public static int ageCreature() {
+        System.out.print("Age de la créature (defaut = 10) : ");
+        String ageInput = scanner.nextLine().trim();
+        if (!ageInput.isEmpty()) {
+            while (!isNumeric(ageInput)) {
+                System.out.println("Veuillez entrer un nombre entier.");
+                System.out.print("Age de la créature (defaut = 10) : ");
+                ageInput = scanner.nextLine().trim();
+            }
+            System.out.println("Age : "+ ageInput);
+            return Integer.parseInt(ageInput);
+        }
+        System.out.println("Age par défaut : 10");
+        return 10;
+    }
+
+    public static int healthCreature() {
+        System.out.print("Santé de la créature (defaut = 100) : ");
+        String healthInput = scanner.nextLine().trim();
+        if (!healthInput.isEmpty()) {
+            while (!isNumeric(healthInput)) {
+                System.out.println("Veuillez entrer un nombre entier.");
+                System.out.print("Santé de la créature (defaut = 100) : ");
+                healthInput = scanner.nextLine().trim();
+            }
+            System.out.println("Santé : "+ healthInput);
+            return Integer.parseInt(healthInput);
+        }
+        System.out.println("Santé par défaut : 100");
+        return 100;
     }
 
     void runEnclosureMenu() {
@@ -150,65 +255,23 @@ public class CreatureManager {
                     int height = 110;
                     int weight = 80;
                     String name = "name";
-                    boolean type = true;
+                    boolean type = false;
 
-                    System.out.print("Nom du Dragon : ");
-                    name = scanner.nextLine().trim(); // Lire toute la ligne y compris les espaces
+                    name = nameCreature();
+                    type = typeCreature();
+                    weight = weightCreature();
+                    height = heightCreature();
+                    age = ageCreature();
+                    health = healthCreature();
 
-                    System.out.print("Male(M) ou Femelle(F) (defaut true): ");
-                    String stype = scanner.nextLine().trim();
-                    if ("M".equals(stype)) {
-                        type = false;
-                    } else if ("F".equals(stype)) {
-                        type = true;
-                    }
+                    Dragon newDragon = new Dragon(name, "Dragon", type, weight, height, age, health,"Cri du Dragon");
 
-                    System.out.print("Poids du dragon (defaut = 80) : ");
-                    String weightInput = scanner.nextLine().trim();
-                    if (!weightInput.isEmpty()) {
-                        while (!isNumeric(weightInput)) {
-                            System.out.println("Veuillez entrer un nombre entier.");
-                            weightInput = scanner.nextLine().trim();
-                        }
-                        weight = Integer.parseInt(weightInput);
-                    }
-
-                    System.out.print("Taille du dragon (defaut = 110) : ");
-                    String heightInput = scanner.nextLine().trim();
-                    if (!heightInput.isEmpty()) {
-                        while (!isNumeric(heightInput)) {
-                            System.out.println("Veuillez entrer un nombre entier.");
-                            heightInput = scanner.nextLine().trim();
-                        }
-                        height = Integer.parseInt(heightInput);
-                    }
-
-                    System.out.print("Age du dragon (defaut = 10) : ");
-                    String ageInput = scanner.nextLine().trim();
-                    if (!ageInput.isEmpty()) {
-                        while (!isNumeric(ageInput)) {
-                            System.out.println("Veuillez entrer un nombre entier.");
-                            ageInput = scanner.nextLine().trim();
-                        }
-                        age = Integer.parseInt(ageInput);
-                    }
-
-                    System.out.print("Santé du dragon (defaut = 100) : ");
-                    String healthInput = scanner.nextLine().trim();
-                    if (!healthInput.isEmpty()) {
-                        while (!isNumeric(healthInput)) {
-                            System.out.println("Veuillez entrer un nombre entier.");
-                            healthInput = scanner.nextLine().trim();
-                        }
-                        health = Integer.parseInt(healthInput);
-                    }
-
-                    Dragon newDragon = new Dragon(name, "Dragon", type, weight, height, age, health,
-                            "Cri du Dragon");
                     addCreature(newDragon);
+
                     Thread creatureThread = new Thread(newDragon);
                     creatureThreads.add(creatureThread);
                     creatureThread.start();
+
                     System.out.println("Dragon ajouté avec succès !");
                     break;
                 case 2:
