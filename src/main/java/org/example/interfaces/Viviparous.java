@@ -1,7 +1,8 @@
-package org.example;
+package org.example.interfaces;
+
+import org.example.Creature;
 
 public interface Viviparous {
-
 
     public default String viviparous(Creature creature){
         if (creature.isAlive() && !creature.getType()) {

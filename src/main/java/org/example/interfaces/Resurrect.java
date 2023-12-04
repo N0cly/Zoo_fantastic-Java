@@ -1,6 +1,8 @@
-package org.example;
+package org.example.interfaces;
 
-public interface resurrect {
+import org.example.Creature;
+
+public interface Resurrect {
 
     public default String resurrect(Creature creature) {
         if (!creature.isAlive()) {

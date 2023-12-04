@@ -1,6 +1,9 @@
-package org.example;
+package org.example.creatures;
 
-public class Megalodons extends Creature implements Swim, Oviparous, AquaticCreature{
+import org.example.Creature;
+import org.example.interfaces.*;
+
+public class Megalodons extends Creature implements Swim, Oviparous, AquaticCreature {
 
     public Megalodons(String name, String species, Boolean type, int weight, int height, int age, int health, String cries) {
         super(name, species, type, weight, height, age, health, cries);

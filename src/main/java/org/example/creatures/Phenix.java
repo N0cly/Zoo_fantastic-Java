@@ -1,4 +1,7 @@
-package org.example;
+package org.example.creatures;
+
+import org.example.Creature;
+import org.example.interfaces.*;
 
 public class Phenix extends Creature implements Fly, Oviparous, FlyingCreature {
 

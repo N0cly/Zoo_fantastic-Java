@@ -1,4 +1,9 @@
-package org.example;
+package org.example.enclosure;
+
+import org.example.Cleanliness;
+import org.example.Creature;
+import org.example.Enclosure;
+import org.example.interfaces.AquaticCreature;
 
 import java.util.List;
 

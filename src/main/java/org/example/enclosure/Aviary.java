@@ -1,8 +1,13 @@
-package org.example;
+package org.example.enclosure;
+
+import org.example.Cleanliness;
+import org.example.Creature;
+import org.example.Enclosure;
+import org.example.interfaces.FlyingCreature;
 
 import java.util.List;
 
-public class Aviary extends Enclosure  {
+public class Aviary extends Enclosure {
     private double height;
 
     public Aviary(String name, double area, int maxCapacity, List<Creature> creatures, Cleanliness cleanliness, double height) {

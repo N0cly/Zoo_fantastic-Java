@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.creatures.Dragon;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;

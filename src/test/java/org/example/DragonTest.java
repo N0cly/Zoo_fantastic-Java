@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.creatures.Dragon;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DragonTest {

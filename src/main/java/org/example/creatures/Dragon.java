@@ -1,4 +1,7 @@
-package org.example;
+package org.example.creatures;
+
+import org.example.Creature;
+import org.example.interfaces.*;
 
 public class Dragon extends Creature implements Run, Swim, Fly, Oviparous, FlyingCreature, AquaticCreature {
 
