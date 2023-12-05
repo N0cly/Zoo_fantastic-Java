@@ -8,7 +8,8 @@ public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static final List<Thread> creatureThreads = new ArrayList<>();
-    static CreatureManager creatureManager = new CreatureManager();
+    static Enclosure sansEnclos = new Enclosure("Sans Enclos", 150, 4, Cleanliness.BON);
+    static CreatureManager creatureManager = new CreatureManager(sansEnclos);
 
     public static void main(String[] args) {
         int mainChoice;

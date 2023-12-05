@@ -10,8 +10,9 @@ import java.util.List;
 public class Aquarium extends Enclosure {
     private double depth; // Profondeur du bassin
     private double salinity; // Salinité de l'eau
+
     public Aquarium(String name, double area, int maxCapacity, List<Creature> creatures, Cleanliness cleanliness) {
-        super(name, area, maxCapacity, creatures, cleanliness);
+        super(name, area, maxCapacity, cleanliness);
         this.depth = depth;
         this.salinity = salinity;
     }
@@ -38,7 +39,6 @@ public class Aquarium extends Enclosure {
         }
         super.addCreature(creature);
     }
-
 
     public double getDepth() {
         return depth;

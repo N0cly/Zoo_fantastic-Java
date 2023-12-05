@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Enclosure {
-    private String name;
-    private double area;
-    private int maxCapacity;
-    private final List<Creature> creatures;
-    private Cleanliness cleanliness;
+    private static String name;
+    private static double area;
+    private static int maxCapacity;
+    private static List<Creature> creatures;
+    private static Cleanliness cleanliness;
 
-    public Enclosure(String name, double area, int maxCapacity, List<Creature> creatures, Cleanliness cleanliness) {
-        this.name = name;
-        this.area = area;
-        this.maxCapacity = maxCapacity;
-        this.creatures = creatures;
-        this.cleanliness = cleanliness;
+    public Enclosure(String name, double area, int maxCapacity, Cleanliness cleanliness) {
+        Enclosure.name = name;
+        Enclosure.area = area;
+        Enclosure.maxCapacity = maxCapacity;
+        Enclosure.creatures = new ArrayList<Creature>();
+        Enclosure.cleanliness = cleanliness;
     }
 
     // Ajoute une créature à l'enclos
@@ -30,6 +30,26 @@ public class Enclosure {
     // Retire une créature de l'enclos
     public void removeCreature(Creature creature) {
         creatures.remove(creature);
+    }
+
+    static void displayEnclosure() {
+        System.out.println("Nom de l'enclos: " + name);
+        System.out.println("Superficie: " + area + " mètres carrés");
+        System.out.println("Capacité maximale: " + maxCapacity);
+        System.out.println("Propreté: " + cleanliness);
+        System.out.println("Créatures présentes:");// TODO
+        System.out.println("Nombre de créatures: " + getNumberOfCreatures());
+        for (Creature creature : creatures) {
+            System.out.println(creature.getName());
+        }
+        if (!creatures.isEmpty()) {
+            System.out.println("Créatures présentes:");
+            for (Creature creature : creatures) {
+                System.out.println(creature);
+            }
+        } else {
+            System.out.println("Aucune créature présente.");
+        }
     }
 
     // Affiche les informations de l'enclos
@@ -72,7 +92,7 @@ public class Enclosure {
         }
     }
 
-    public int getNumberOfCreatures() {
+    public static int getNumberOfCreatures() {
         return creatures.size();
     }
 
@@ -81,7 +101,7 @@ public class Enclosure {
     }
 
     public void setName(String name) {
-        this.name = name;
+        Enclosure.name = name;
     }
 
     public double getArea() {
@@ -89,7 +109,7 @@ public class Enclosure {
     }
 
     public void setArea(double area) {
-        this.area = area;
+        Enclosure.area = area;
     }
 
     public int getMaxCapacity() {
@@ -97,7 +117,7 @@ public class Enclosure {
     }
 
     public void setMaxCapacity(int maxCapacity) {
-        this.maxCapacity = maxCapacity;
+        Enclosure.maxCapacity = maxCapacity;
     }
 
     public List<Creature> getCreatures() {
@@ -109,6 +129,6 @@ public class Enclosure {
     }
 
     public void setCleanliness(Cleanliness cleanliness) {
-        this.cleanliness = cleanliness;
+        Enclosure.cleanliness = cleanliness;
     }
 }

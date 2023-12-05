@@ -9,9 +9,11 @@ import java.util.ArrayList;
 public class CreatureManager {
     private static List<Creature> creatures;
     private static List<Thread> creatureThreads;
+    private static Enclosure enclosParDefaut;
     private static Scanner scanner = new Scanner(System.in);
 
-    public CreatureManager() {
+    public CreatureManager(Enclosure enclosParDefaut) {
+        CreatureManager.enclosParDefaut = enclosParDefaut;
         CreatureManager.creatures = new ArrayList<>();
         CreatureManager.creatureThreads = new ArrayList<>();
     }
@@ -35,7 +37,6 @@ public class CreatureManager {
         System.out.println("4. Quitter");
         System.out.print("Choisissez une option : ");
     }
-
 
     public static void displayCreatureMenu() {
         System.out.println("===== Gérer les Créatures =====s");
@@ -81,22 +82,22 @@ public class CreatureManager {
             System.out.print("Nom de la créature : ");
             name = scanner.nextLine().trim();
         }
-        System.out.println("Nom : "+ name);
+        System.out.println("Nom : " + name);
         return name;
     }
 
     public static boolean typeCreature() {
         System.out.print("Male(M) ou Femelle(F) (defaut F): ");
         String stype = scanner.nextLine().trim();
-        if (!stype.isEmpty()){
-            while (!stype.equals("M") ||!stype.equals("F")||!stype.equals("")){
+        if (!stype.isEmpty()) {
+            while (!stype.equals("M") || !stype.equals("F") || !stype.equals("")) {
                 System.out.println("Caractere saisi incorrect");
                 System.out.print("Male(M) ou Femelle(F) (defaut F): ");
                 stype = scanner.nextLine().trim();
                 if ("M".equals(stype)) {
                     System.out.println("Type : Male");
                     return true;
-                }else if ("F".equals(stype)) {
+                } else if ("F".equals(stype)) {
                     System.out.println("Type : Femelle");
                     return false;
                 }
@@ -105,7 +106,7 @@ public class CreatureManager {
         if ("M".equals(stype)) {
             System.out.println("Type : Male");
             return true;
-        }else if ("F".equals(stype)) {
+        } else if ("F".equals(stype)) {
             System.out.println("Type : Femelle");
             return false;
         }
@@ -122,7 +123,7 @@ public class CreatureManager {
                 System.out.print("Poids de la créature (defaut = 80) : ");
                 weightInput = scanner.nextLine().trim();
             }
-            System.out.println("Poids : "+ weightInput);
+            System.out.println("Poids : " + weightInput);
             return Integer.parseInt(weightInput);
         }
         System.out.println("Poids par défaut : 80");
@@ -138,7 +139,7 @@ public class CreatureManager {
                 System.out.print("Taille de la créature (defaut = 110) : ");
                 heightInput = scanner.nextLine().trim();
             }
-            System.out.println("Taille : "+ heightInput);
+            System.out.println("Taille : " + heightInput);
             return Integer.parseInt(heightInput);
         }
         System.out.println("Taille par défaut : 110");
@@ -154,7 +155,7 @@ public class CreatureManager {
                 System.out.print("Age de la créature (defaut = 10) : ");
                 ageInput = scanner.nextLine().trim();
             }
-            System.out.println("Age : "+ ageInput);
+            System.out.println("Age : " + ageInput);
             return Integer.parseInt(ageInput);
         }
         System.out.println("Age par défaut : 10");
@@ -170,7 +171,7 @@ public class CreatureManager {
                 System.out.print("Santé de la créature (defaut = 100) : ");
                 healthInput = scanner.nextLine().trim();
             }
-            System.out.println("Santé : "+ healthInput);
+            System.out.println("Santé : " + healthInput);
             return Integer.parseInt(healthInput);
         }
         System.out.println("Santé par défaut : 100");
@@ -189,7 +190,7 @@ public class CreatureManager {
             switch (enclosureChoice) {
                 case 1:
                     // Ajouter la logique pour afficher les enclos
-                    System.out.println("Affichage des enclos...");
+                    Enclosure.displayEnclosure();
                     break;
                 case 2:
                     // Ajouter la logique pour ajouter un enclos
@@ -266,12 +267,13 @@ public class CreatureManager {
                     age = ageCreature();
                     health = healthCreature();
 
-                    Dragon newDragon = new Dragon(name, "Dragon", type, weight, height, age, health,"Cri du Dragon");
+                    Dragon newDragon = new Dragon(name, "Dragon", type, weight, height, age, health, "Cri du Dragon");
 
                     addCreature(newDragon);
 
                     Thread creatureThread = new Thread(newDragon);
                     creatureThreads.add(creatureThread);
+                    enclosParDefaut.addCreature(newDragon);
                     creatureThread.start();
 
                     System.out.println("Dragon ajouté avec succès !");

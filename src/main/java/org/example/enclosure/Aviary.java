@@ -10,10 +10,12 @@ import java.util.List;
 public class Aviary extends Enclosure {
     private double height;
 
-    public Aviary(String name, double area, int maxCapacity, List<Creature> creatures, Cleanliness cleanliness, double height) {
-        super(name, area, maxCapacity, creatures, cleanliness);
+    public Aviary(String name, double area, int maxCapacity, List<Creature> creatures, Cleanliness cleanliness,
+            double height) {
+        super(name, area, maxCapacity, cleanliness);
         this.height = height;
     }
+
     @Override
     public void addCreature(Creature creature) {
         if (!(creature instanceof FlyingCreature)) {
@@ -37,7 +39,11 @@ public class Aviary extends Enclosure {
         System.out.println("Le toit de la volière a été vérifié et est en bon état.");
     }
 
-    public double getHeight() { return height; }
+    public double getHeight() {
+        return height;
+    }
 
-    public void setHeight(double height) { this.height = height; }
+    public void setHeight(double height) {
+        this.height = height;
+    }
 }
