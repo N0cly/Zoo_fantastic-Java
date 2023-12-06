@@ -6,7 +6,7 @@ public class Creature implements Runnable {
 
     private String name;
     private String species;
-    private Boolean type;
+    private String gender;
     private int weight;
     private int height;
     protected int age;
@@ -17,11 +17,11 @@ public class Creature implements Runnable {
     private String cries;
     private boolean isAlive;
 
-    public Creature(String name, String species2, Boolean type, int weight, int height, int age, int health,
-            String cries) {
+    public Creature(String name, String species2, String gender, int weight, int height, int age, int health,
+                    String cries) {
         this.name = name;
         this.species = "Dragon";
-        this.type = type;
+        this.gender = gender;
         this.weight = weight;
         this.height = height;
         this.age = age;
@@ -73,8 +73,8 @@ public class Creature implements Runnable {
         this.species = species;
     }
 
-    public void setType(Boolean type) {
-        this.type = type;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public void setWeight(int weight) {
@@ -117,8 +117,8 @@ public class Creature implements Runnable {
         return name;
     }
 
-    public Boolean getType() {
-        return type;
+    public String getGender() {
+        return gender;
     }
 
     public int getWeight() {
@@ -230,4 +230,6 @@ public class Creature implements Runnable {
                 '}';
     }
 
+    protected void displayInfo() {
+    }
 }

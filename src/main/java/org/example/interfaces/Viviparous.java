@@ -4,12 +4,13 @@ import org.example.Creature;
 
 public interface Viviparous {
 
-    public default String viviparous(Creature creature){
-        if (creature.isAlive() && !creature.getType()) {
+    public default String giveBirth(Creature creature){
+        if (!creature.isAlive()) {
+            return creature.getName() + " est mort";
+        } else if ("femmelle".equalsIgnoreCase(creature.getGender())) {
             return creature.getName() + " est en train d'accoucher";
-        } else if (creature.isAlive() && creature.getType()) {
+        } else {
             return creature.getName() + " est un male, il ne peut pas accoucher";
         }
-        return creature.getName() + " est mort";
     }
 }

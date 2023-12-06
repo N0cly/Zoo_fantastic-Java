@@ -7,7 +7,7 @@ public class ZooKeeper {
 
     public ZooKeeper(String name, String gender, int age) {
         this.name = name;
-        this.gender = gender;
+        this.gender = String.valueOf(gender);
         this.age = age;
     }
     // Examiner un enclos
