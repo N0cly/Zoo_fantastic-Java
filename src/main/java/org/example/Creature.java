@@ -17,10 +17,10 @@ public class Creature implements Runnable {
     private String cries;
     private boolean isAlive;
 
-    public Creature(String name, String species2, String gender, int weight, int height, int age, int health,
+    public Creature(String name, String gender, int weight, int height, int age, int health,
                     String cries) {
         this.name = name;
-        this.species = "Dragon";
+
         this.gender = gender;
         this.weight = weight;
         this.height = height;

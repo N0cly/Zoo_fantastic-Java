@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 public class Zoo {
@@ -8,11 +9,11 @@ public class Zoo {
     private int maxEnclosures;
     private List<Enclosure> enclosures;
 
-    public Zoo(String name, ZooKeeper zooKeeper, int maxEnclosures, List<Enclosure> enclosures) {
+    public Zoo(String name, int maxEnclosures) {
         this.name = name;
-        this.zooKeeper = zooKeeper;
+        this.zooKeeper = null;
         this.maxEnclosures = maxEnclosures;
-        this.enclosures = enclosures;
+        this.enclosures = new ArrayList<>();
     }
     // Affiche le nombre total de créatures dans le zoo
     public void displayTotalNumberOfCreatures() {

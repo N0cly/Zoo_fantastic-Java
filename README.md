@@ -1,4 +1,4 @@
-# Zoo_fantastic-Java
+# Zoo_fantastic-Javaspecies2
 
 ## Description
 Zoo fantastique dans lequel vous incarnez un gardien de zoo. Vous devez gérer les animaux et les enclos. Les animaux peuvent se reproduire, mourir, s'endormir de manière indépendante. Les enclos peuvent être salis et nettoyés. Les animaux peuvent être déplacés d'un enclos à un autre. Les animaux peuvent être nourris. Les animaux peuvent être soignés.  

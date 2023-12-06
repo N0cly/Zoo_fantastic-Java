@@ -17,8 +17,9 @@ public class Lycanthrope extends Creature implements Run, Viviparous {
 
 
 
-    public Lycanthrope(String name, String species, String gender, int weight, int height, int age, int health, String cries) {
-        super(name, species, gender, weight, height, age, health, cries);
+    public Lycanthrope(String name, String gender, int weight, int height, int age, int health, String cries) {
+        super(name,gender, weight, height, age, health, cries);
+        this.setSpecies("Lycanthrope");
     }
     // Afficher les caractéristiques
 

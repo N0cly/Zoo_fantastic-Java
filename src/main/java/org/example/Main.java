@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.manager.CreatureManager;
+import org.example.manager.ZooManager;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,19 +13,21 @@ public class Main {
     private static final List<Thread> creatureThreads = new ArrayList<>();
     static Enclosure sansEnclos = new Enclosure("Sans Enclos", 150, 4, Cleanliness.BON);
     static CreatureManager creatureManager = new CreatureManager(sansEnclos);
-
-    public static void main(String[] args) {
+    static ZooManager zooManager = new ZooManager();
+    public static void main(String[] args) throws InterruptedException {
         int mainChoice;
         do {
-            CreatureManager.displayMainMenu();
+            zooManager.displayZooCreationMenu();
+
+            //CreatureManager.displayMainMenu();
             mainChoice = scanner.nextInt();
 
             switch (mainChoice) {
                 case 1:
-                    creatureManager.runCreatureMenu();
+                    //creatureManager.runCreatureMenu();
                     break;
                 case 2:
-                    creatureManager.runEnclosureMenu();
+                    //creatureManager.runEnclosureMenu();
                     break;
                 case 3:
                     // Ajouter la logique pour simuler le passage du temps

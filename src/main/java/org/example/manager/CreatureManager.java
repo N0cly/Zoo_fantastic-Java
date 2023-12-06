@@ -1,10 +1,14 @@
-package org.example;
+package org.example.manager;
 
+import org.example.Creature;
+import org.example.Enclosure;
 import org.example.creatures.Dragon;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
+
+import static java.lang.Thread.sleep;
 
 public class CreatureManager {
     private static List<Creature> creatures;
@@ -74,7 +78,7 @@ public class CreatureManager {
         creatures.remove(creature);
     }
 
-    public static String nameCreature() {
+    public static String setName() {
         System.out.print("Nom de la créature : ");
         String name = scanner.nextLine().trim();
         while (name.isEmpty() || name.isBlank()) {
@@ -86,7 +90,7 @@ public class CreatureManager {
         return name;
     }
 
-    public static boolean typeCreature() {
+    public static boolean setType() {
         System.out.print("Male(M) ou Femelle(F) (defaut F): ");
         String stype = scanner.nextLine().trim();
         if (!stype.isEmpty()) {
@@ -114,7 +118,7 @@ public class CreatureManager {
         return false;
     }
 
-    public static int weightCreature() {
+    public static int setWeight() {
         System.out.print("Poids de la créature (defaut = 80) : ");
         String weightInput = scanner.nextLine().trim();
         if (!weightInput.isEmpty()) {
@@ -130,7 +134,7 @@ public class CreatureManager {
         return 80;
     }
 
-    public static int heightCreature() {
+    public static int setHeight() {
         System.out.print("Taille de la créature (defaut = 110) : ");
         String heightInput = scanner.nextLine().trim();
         if (!heightInput.isEmpty()) {
@@ -146,7 +150,7 @@ public class CreatureManager {
         return 110;
     }
 
-    public static int ageCreature() {
+    public static int setAge() {
         System.out.print("Age de la créature (defaut = 10) : ");
         String ageInput = scanner.nextLine().trim();
         if (!ageInput.isEmpty()) {
@@ -162,7 +166,7 @@ public class CreatureManager {
         return 10;
     }
 
-    public static int healthCreature() {
+    public static int setHealth() {
         System.out.print("Santé de la créature (defaut = 100) : ");
         String healthInput = scanner.nextLine().trim();
         if (!healthInput.isEmpty()) {
@@ -260,12 +264,12 @@ public class CreatureManager {
                     String name = "name";
                     boolean type = false;
 
-                    name = nameCreature();
-                    type = typeCreature();
-                    weight = weightCreature();
-                    height = heightCreature();
-                    age = ageCreature();
-                    health = healthCreature();
+                    name = setName();
+                    type = setType();
+                    weight = setWeight();
+                    height = setHeight();
+                    age = setAge();
+                    health = setHealth();
 
                     Dragon newDragon = new Dragon(name, "Dragon", type, weight, height, age, health, "Cri du Dragon");
 

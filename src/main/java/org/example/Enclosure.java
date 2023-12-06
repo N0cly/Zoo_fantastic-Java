@@ -32,7 +32,7 @@ public class Enclosure {
         creatures.remove(creature);
     }
 
-    static void displayEnclosure() {
+    public static void displayEnclosure() {
         System.out.println("Nom de l'enclos: " + name);
         System.out.println("Superficie: " + area + " mètres carrés");
         System.out.println("Capacité maximale: " + maxCapacity);
