@@ -36,10 +36,12 @@ public class Lycanthrope extends Creature implements Run, Viviparous {
     }
 
     // Hurler
-    public void howl() {
-        System.out.println(this.getName() + " hurle.");
+
+    public void cries() {
+        System.out.println(this.getName() + " hurle." + this.getCries());
         // Implémenter la logique de communication par hurlement
     }
+
 
     // Entendre un hurlement
     public void hearHowl() {
@@ -68,11 +70,70 @@ public class Lycanthrope extends Creature implements Run, Viviparous {
     public void run() {
         System.out.println(this.getName() + " court rapidement.");
     }
+    
 
+    @Override
+    public String getGender() {
+        return gender;
+    }
+
+    @Override
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAgeCategory() {
+        return ageCategory;
+    }
+
+    public void setAgeCategory(String ageCategory) {
+        this.ageCategory = ageCategory;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public int getDominationFactor() {
+        return dominationFactor;
+    }
+
+    public void setDominationFactor(int dominationFactor) {
+        this.dominationFactor = dominationFactor;
+    }
+
+    public char getRank() {
+        return rank;
+    }
+
+    public void setRank(char rank) {
+        this.rank = rank;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getImpetuosity() {
+        return impetuosity;
+    }
+
+    public void setImpetuosity(int impetuosity) {
+        this.impetuosity = impetuosity;
+    }
+
+    public Pack getPack() {
+        return pack;
+    }
     public void setPack(Pack pack) {
         this.pack = pack;
     }
-
-
-
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Pack {
     private String name; // Nom de la meute
+    private Lycanthrope alphaMale;
+    private Lycanthrope alphaFemale;
     private List<Lycanthrope> members; // Membres de la meute
 
     // Constructeur pour initialiser la meute avec un nom et éventuellement des membres préexistants
@@ -13,38 +15,76 @@ public class Pack {
         this.members = new ArrayList<>(); // Initialiser la liste des membres
     }
 
-    // Obtenez le nom de la meute
-    public String getName() {
-        return name;
-    }
-
     // Ajoutez un membre à la meute
     public void addMember(Lycanthrope lycanthrope) {
         if (!members.contains(lycanthrope)) {
             members.add(lycanthrope);
-            // Définissez la meute du lycanthrope sur cette meute
-            lycanthrope.setPack(this);
+
+            lycanthrope.setPack(this); // Défini la meute du lycanthrope sur cette meute
         }
     }
 
     // Retirez un membre de la meute
     public void removeMember(Lycanthrope lycanthrope) {
         if (members.remove(lycanthrope)) {
-            // Définissez la meute du lycanthrope sur null car il n'appartient plus à cette meute
-            lycanthrope.setPack(null);
+            lycanthrope.setPack(null);// Défini la meute du lycanthrope sur null car il n'appartient plus à cette meute
         }
     }
 
-    // Affichez les informations sur tous les membres de la meute
-    public void displayMembersInfo() {
-        System.out.println("Membres de la meute " + name + ":");
+    public void setAlphaCouple(Lycanthrope male, Lycanthrope female) {
+        this.alphaMale = male;
+        this.alphaFemale = female;
+        // Ajoutez la logique nécessaire pour gérer le changement du couple alpha
+    }
+
+    // Lancer une reproduction
+    public void reproduce() {
+        // Logique de reproduction, potentiellement liée au couple α
+    }
+
+    // Afficher les caractéristiques de la meute
+    public void displayPackInfo() {
+        System.out.println("Meute dirigée par : " + alphaMale.getName() + " et " + alphaFemale.getName());
+        System.out.println("Membres de la meute : ");
         for (Lycanthrope member : members) {
             member.displayCharacteristics();
         }
     }
 
-    // Getters et setters pour les attributs de la classe
-    // ...
+    public void manageDomination(Lycanthrope dominator, Lycanthrope submissive) {
+        // Gérez la domination et la soumission
+    }
 
-    // ... autres méthodes et logiques ...
+    // Obtenez le nom de la meute
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Lycanthrope getAlphaMale() {
+        return alphaMale;
+    }
+
+    public void setAlphaMale(Lycanthrope alphaMale) {
+        this.alphaMale = alphaMale;
+    }
+
+    public Lycanthrope getAlphaFemale() {
+        return alphaFemale;
+    }
+
+    public void setAlphaFemale(Lycanthrope alphaFemale) {
+        this.alphaFemale = alphaFemale;
+    }
+
+    public List<Lycanthrope> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Lycanthrope> members) {
+        this.members = members;
+    }
 }

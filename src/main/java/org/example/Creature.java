@@ -20,7 +20,6 @@ public class Creature implements Runnable {
     public Creature(String name, String gender, int weight, int height, int age, int health,
                     String cries) {
         this.name = name;
-
         this.gender = gender;
         this.weight = weight;
         this.height = height;
