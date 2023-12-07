@@ -78,6 +78,7 @@ public class ZooManager {
 
                     System.out.println("Zoo ajouté avec succès !");
                     sleep(2000);
+
                     break;
                 case 2:
                     System.out.println("Aurevoir !");

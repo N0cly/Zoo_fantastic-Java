@@ -10,8 +10,9 @@ public class Mermaids extends Creature implements Swim, Viviparous, AquaticCreat
     }
 
     @Override
-    public void swim() {
+    public String swim() {
         System.out.println("La sirène nage dans l'eau.");
+        return "La sirène nage dans l'eau.";
     }
 
 }

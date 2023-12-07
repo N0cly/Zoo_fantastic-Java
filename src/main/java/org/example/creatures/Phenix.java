@@ -11,7 +11,8 @@ public class Phenix extends Creature implements Fly, Oviparous, FlyingCreature {
     }
 
     @Override
-    public void fly() {
+    public String fly() {
         System.out.println("Le Phenix s'élève dans les airs.");
+        return "Le Phenix s'élève dans les airs.";
     }
 }

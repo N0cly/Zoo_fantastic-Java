@@ -90,7 +90,7 @@ public class CreatureManager {
         return name;
     }
 
-    public static boolean setType() {
+    public static String setType() {
         System.out.print("Male(M) ou Femelle(F) (defaut F): ");
         String stype = scanner.nextLine().trim();
         if (!stype.isEmpty()) {
@@ -100,22 +100,22 @@ public class CreatureManager {
                 stype = scanner.nextLine().trim();
                 if ("M".equals(stype)) {
                     System.out.println("Type : Male");
-                    return true;
+                    return "Male";
                 } else if ("F".equals(stype)) {
                     System.out.println("Type : Femelle");
-                    return false;
+                    return "Femelle";
                 }
             }
         }
         if ("M".equals(stype)) {
             System.out.println("Type : Male");
-            return true;
+            return "Male";
         } else if ("F".equals(stype)) {
             System.out.println("Type : Femelle");
-            return false;
+            return "Femelle";
         }
         System.out.println("Type par défaut : Femelle");
-        return false;
+        return "Femelle";
     }
 
     public static int setWeight() {
@@ -262,7 +262,7 @@ public class CreatureManager {
                     int height = 110;
                     int weight = 80;
                     String name = "name";
-                    boolean type = false;
+                    String type = "Femelle";
 
                     name = setName();
                     type = setType();
@@ -271,7 +271,8 @@ public class CreatureManager {
                     age = setAge();
                     health = setHealth();
 
-                    Dragon newDragon = new Dragon(name, "Dragon", type, weight, height, age, health, "Cri du Dragon");
+
+                    Dragon newDragon = new Dragon(name, type, weight, height, age , health, "Grr Grr");
 
                     addCreature(newDragon);
 

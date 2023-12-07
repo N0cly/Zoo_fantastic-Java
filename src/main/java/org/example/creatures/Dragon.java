@@ -11,12 +11,14 @@ public class Dragon extends Creature implements Run, Swim, Fly, Oviparous, Flyin
     }
 
     @Override
-    public void fly() {
+    public String fly() {
         System.out.println("Le Dragon s'envole dans les airs.");
+        return "Le Dragon s'envole dans les airs.";
     }
 
     @Override
-    public void swim() {
+    public String swim() {
         System.out.println("Le Dragon se déplace dans l'eau.");
+        return null;
     }
 }

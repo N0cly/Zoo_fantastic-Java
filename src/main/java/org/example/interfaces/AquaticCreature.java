@@ -1,5 +1,5 @@
 package org.example.interfaces;
 
 public interface AquaticCreature {
-    void swim();
+    String swim();
 }

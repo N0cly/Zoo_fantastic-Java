@@ -40,47 +40,9 @@ public class Lycanthrope extends Creature implements Run, Viviparous {
     public void cries() {
         System.out.println(this.getName() + " hurle." + this.getCries());
         // Implémenter la logique de communication par hurlement
+
     }
 
-
-    // Entendre un hurlement
-    public void hearHowl() {
-        if (!this.isSleeping() && this.isAlive()) {
-            System.out.println(this.getName() + " entend un hurlement.");
-            // Implémenter la réaction au hurlement
-        }
-    }
-
-    // Se séparer de sa meute
-    public void leavePack() {
-        if (this.pack != null) {
-            this.pack.removeMember(this);
-            this.pack = null;
-            System.out.println(this.getName() + " a quitté la meute.");
-        }
-    }
-
-    // Se transformer en humain
-    public ZooKeeper transformIntoHuman() {
-        System.out.println(this.getName() + " se transforme en humain.");
-        return new ZooKeeper(this.getName(), this.getGender(), this.getAge());
-    }
-
-    @Override
-    public void run() {
-        System.out.println(this.getName() + " court rapidement.");
-    }
-    
-
-    @Override
-    public String getGender() {
-        return gender;
-    }
-
-    @Override
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
 
     public String getAgeCategory() {
         return ageCategory;
@@ -133,6 +95,49 @@ public class Lycanthrope extends Creature implements Run, Viviparous {
     public Pack getPack() {
         return pack;
     }
+
+
+    // Entendre un hurlement
+    public String hearHowl() {
+        if (!this.isSleeping() && this.isAlive()) {
+            System.out.println(this.getName() + " entend un hurlement.");
+            // Implémenter la réaction au hurlement
+        }
+        return this.getName() + " entend un hurlement.";
+    }
+
+    // Se séparer de sa meute
+    public void leavePack() {
+        if (this.pack != null) {
+            this.pack.removeMember(this);
+            this.pack = null;
+            System.out.println(this.getName() + " a quitté la meute.");
+        }
+    }
+
+    // Se transformer en humain
+    public String transformIntoHuman() {
+        System.out.println(this.getName() + " se transforme en humain.");
+        new ZooKeeper(this.getName(), this.getGender(), this.getAge());
+        return this.getName() + " se transforme en humain.";
+    }
+
+    @Override
+    public void run() {
+        System.out.println(this.getName() + " court rapidement.");
+    }
+    
+
+    @Override
+    public String getGender() {
+        return gender;
+    }
+
+    @Override
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public void setPack(Pack pack) {
         this.pack = pack;
     }

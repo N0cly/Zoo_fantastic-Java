@@ -11,7 +11,8 @@ public class Megalodons extends Creature implements Swim, Oviparous, AquaticCrea
     }
 
     @Override
-    public void swim() {
+    public String swim() {
         System.out.println("Le Megalodon se déplace puissamment dans l'eau.");
+        return "Le Megalodon se déplace puissamment dans l'eau.";
     }
 }

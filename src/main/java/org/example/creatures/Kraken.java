@@ -11,8 +11,9 @@ public class Kraken extends Creature implements Swim, Oviparous, AquaticCreature
     }
 
     @Override
-    public void swim() {
+    public String swim() {
         System.out.println("Le Kraken se déplace puissamment dans l'eau.");
+        return "Le Kraken se déplace puissamment dans l'eau.";
     }
 
 }
