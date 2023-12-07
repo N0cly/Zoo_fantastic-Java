@@ -10,6 +10,7 @@ import static java.lang.Thread.sleep;
  */
 public class ZooManager {
 
+    private Zoo zoo = null;
     private static Scanner scanner = new Scanner(System.in);
 
     /**
@@ -61,12 +62,25 @@ public class ZooManager {
     }
 
     /**
+     * Affiche le menu principal du zoo fantastique.
+     */
+    public void displayMainMenu(Zoo zoo) {
+        System.out.println("===== Bienvenue chez le Zoo " + zoo.getName() + " =====");
+        System.out.println("1. Gérer les créatures");
+        System.out.println("2. Gérer les enclos");
+        System.out.println("3. Simuler le passage du temps");
+        System.out.println("4. Quitter");
+        System.out.print("Choisissez une option : ");
+    }
+
+    /**
      * Affiche le menu de création du zoo fantastique.
      * 
      * @return
      *
      * @throws InterruptedException
      */
+
     public Zoo displayZooCreationMenu() throws InterruptedException {
         int creatureChoice;
 
@@ -96,7 +110,6 @@ public class ZooManager {
                     Zoo newZoo = new Zoo(name, maxEnclosures);
 
                     System.out.println("Zoo ajouté avec succès !");
-                    sleep(2000);
                     return newZoo;
                 case 2:
                     System.out.println("Aurevoir !");

@@ -2,6 +2,7 @@ package org.example.manager;
 
 import org.example.Creature;
 import org.example.Enclosure;
+import org.example.Zoo;
 import org.example.ZooKeeper;
 import org.example.creatures.Dragon;
 
@@ -19,6 +20,7 @@ public class CreatureManager {
     private static List<Enclosure> enclosureList = new ArrayList<>();
     private static Enclosure enclosParDefaut;
     private static ZooKeeper zooKeeper;
+    static Zoo zoo;
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -53,17 +55,6 @@ public class CreatureManager {
      */
     public List<Creature> getCreatures() {
         return creatures;
-    }
-
-    /**
-     * Affiche le menu principal du zoo fantastique.
-     */
-    public static void displayMainMenu() {
-        System.out.println("===== Zoo Fantastique Menu =====");
-        System.out.println("1. Gérer les créatures");
-        System.out.println("2. Gérer les enclos");
-        System.out.println("4. Quitter");
-        System.out.print("Choisissez une option : ");
     }
 
     /**

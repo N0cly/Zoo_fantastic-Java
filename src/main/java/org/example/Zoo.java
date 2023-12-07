@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class Zoo {
 
-    private String name;
+    public String name;
     private ZooKeeper zooKeeper;
     private int maxEnclosures;
     private List<Enclosure> enclosures;
@@ -17,7 +17,7 @@ public class Zoo {
     /**
      * Constructs a zoo with the specified name and maximum number of enclosures.
      *
-     * @param name           The name of the zoo.
+     * @param name          The name of the zoo.
      * @param maxEnclosures The maximum number of enclosures in the zoo.
      */
     public Zoo(String name, int maxEnclosures) {
@@ -86,6 +86,6 @@ public class Zoo {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 }
