@@ -18,8 +18,8 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         int mainChoice;
+        zoo = zooManager.displayZooCreationMenu();
         do {
-            zoo = zooManager.displayZooCreationMenu();
             if (zoo != null) { // Check if zoo is not null
                 zooManager.displayMainMenu(zoo);
                 mainChoice = scanner.nextInt();
@@ -50,6 +50,7 @@ public class Main {
             }
         } while (mainChoice != 4);
         creatureManager.closeScanner();
+        System.exit(0); // 0 indique une sortie normale
     }
 
     private static void startCreatureThreads() {
