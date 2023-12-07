@@ -1,5 +1,8 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a creature in a zoo.
  */
@@ -69,6 +72,7 @@ public class Creature implements Runnable {
                     if (this.hunger == 0) {
                         System.out.println(this.name + " est mort de famine.");
                         this.isAlive = false;
+
                         break;
                     }
                 }

@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -42,6 +43,17 @@ public class Enclosure {
             creatures.add(creature);
         } else {
             System.out.println("L'enclos est plein !");
+        }
+    }
+
+    public void removeDeadCreatures() {
+        Iterator<Creature> iterator = creatures.iterator();
+        while (iterator.hasNext()) {
+            Creature creature = iterator.next();
+            if (!creature.isAlive()) {
+                iterator.remove();
+                System.out.println(creature.getName() + " a été retiré de l'enclos car il est mort.");
+            }
         }
     }
 

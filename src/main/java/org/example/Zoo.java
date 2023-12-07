@@ -29,6 +29,14 @@ public class Zoo {
         this.enclosureList = new ArrayList<>();
     }
 
+    public void addEnclosure(Enclosure enclosure) {
+        if (enclosureList.size() < maxEnclosures) {
+            enclosureList.add(enclosure);
+        } else {
+            System.out.println("Le nombre maximal d'enclos a été atteint. Impossible d'ajouter un nouvel enclos.");
+        }
+    }
+
     /**
      * Displays the total number of creatures in the zoo.
      */

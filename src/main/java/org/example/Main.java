@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Thread> creatureThreads = new ArrayList<>();
-    private static List<Enclosure> enclosureList = new ArrayList<>();
     static Enclosure sansEnclos = new Enclosure("Sans Enclos", 150, 4, Cleanliness.BON);
     static CreatureManager creatureManager = new CreatureManager(sansEnclos);
     public static ZooManager zooManager = new ZooManager();
@@ -19,6 +18,10 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         int mainChoice;
         zoo = zooManager.displayZooCreationMenu();
+
+        // Vous n'avez plus besoin de cette ligne
+        // enclosureList.add(sansEnclos);
+
         do {
             if (zoo != null) { // Check if zoo is not null
                 zooManager.displayMainMenu(zoo);

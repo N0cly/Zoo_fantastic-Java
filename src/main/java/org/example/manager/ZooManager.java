@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static java.lang.Thread.sleep;
-
 /**
  * Cette classe gère la création d'un zoo fantastique.
  */
@@ -128,13 +126,13 @@ public class ZooManager {
             // zoo.addEnclosure(newEnclosure);
 
             System.out.println("Enclos ajouté avec succès !");
-        } else {
-            System.out.println("Veuillez d'abord créer un zoo.");
         }
     }
 
-    public void displayEnclosureNames() {
+    public void displayEnclosureNames(List<Enclosure> enclosureList) {
         System.out.println("Liste des enclos :");
+        System.out.println(enclosureList.size());
+
         for (int i = 0; i < enclosureList.size(); i++) {
             Enclosure enclosure = enclosureList.get(i);
             System.out.println((i + 1) + ". " + enclosure.getName());
@@ -196,8 +194,13 @@ public class ZooManager {
 
             switch (enclosureChoice) {
                 case 1:
+                    for (Enclosure enclosure : enclosureList) {
+                        enclosure.removeDeadCreatures();
+                        zooKeeper.examineEnclosure(enclosure);
+                        System.out.println();
+                    }
                     // Afficher les noms des enclos
-                    displayEnclosureNames();
+                    displayEnclosureNames(enclosureList);
 
                     // Laisser l'utilisateur choisir un enclos pour afficher les détails
                     System.out.print("Choisissez un enclos pour afficher les détails (0 pour revenir) : ");
