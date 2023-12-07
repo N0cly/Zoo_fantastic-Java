@@ -3,16 +3,18 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
- * Represents a zoo that contains enclosures and creatures.
+ * Represents a zoo that contains enclosureList and creatures.
  */
 public class Zoo {
 
     public String name;
     private ZooKeeper zooKeeper;
     private int maxEnclosures;
-    private List<Enclosure> enclosures;
+    private List<Enclosure> enclosureList;
+    private static Scanner scanner = new Scanner(System.in);
 
     /**
      * Constructs a zoo with the specified name and maximum number of enclosures.
@@ -20,11 +22,11 @@ public class Zoo {
      * @param name          The name of the zoo.
      * @param maxEnclosures The maximum number of enclosures in the zoo.
      */
-    public Zoo(String name, int maxEnclosures) {
+    public Zoo(String name, int maxEnclosures, ZooKeeper zooKeeper) {
         this.name = name;
-        this.zooKeeper = null;
+        this.zooKeeper = zooKeeper;
         this.maxEnclosures = maxEnclosures;
-        this.enclosures = new ArrayList<>();
+        this.enclosureList = new ArrayList<>();
     }
 
     /**
@@ -32,28 +34,28 @@ public class Zoo {
      */
     public void displayTotalNumberOfCreatures() {
         int total = 0;
-        for (Enclosure enclosure : enclosures) {
+        for (Enclosure enclosure : enclosureList) {
             total += enclosure.getNumberOfCreatures();
         }
         System.out.println("Nombre total de créatures dans le zoo: " + total);
     }
 
     /**
-     * Displays the creatures in all enclosures of the zoo.
+     * Displays the creatures in all enclosureList of the zoo.
      */
-    public void displayCreaturesInAllEnclosures() {
-        for (Enclosure enclosure : enclosures) {
+    public void displayCreaturesInAllenclosureList() {
+        for (Enclosure enclosure : enclosureList) {
             System.out.println("Enclos: " + enclosure.getName());
             enclosure.displayInfo();
         }
     }
 
     /**
-     * Applies random events to the creatures and enclosures in the zoo.
+     * Applies random events to the creatures and enclosureList in the zoo.
      */
     public void applyRandomEvents() {
         Random random = new Random();
-        for (Enclosure enclosure : enclosures) {
+        for (Enclosure enclosure : enclosureList) {
             for (Creature creature : enclosure.getCreatures()) {
                 // Randomly put creatures to sleep or wake them up
                 if (random.nextBoolean()) {

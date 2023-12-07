@@ -1,6 +1,12 @@
 package org.example.manager;
 
+import org.example.Cleanliness;
+import org.example.Enclosure;
 import org.example.Zoo;
+import org.example.ZooKeeper;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
@@ -10,8 +16,13 @@ import static java.lang.Thread.sleep;
  */
 public class ZooManager {
 
-    private Zoo zoo = null;
+    private static ZooKeeper zooKeeper;
+    private static Zoo zoo;
     private static Scanner scanner = new Scanner(System.in);
+    private static List<Enclosure> enclosureList = new ArrayList<>();
+
+    static Enclosure sansEnclos = new Enclosure("Sans Enclos", 150, 4, Cleanliness.BON);
+    static CreatureManager creatureManager = new CreatureManager(sansEnclos);
 
     /**
      * Demande et renvoie le nom du zoo saisi par l'utilisateur.
@@ -73,6 +84,145 @@ public class ZooManager {
         System.out.print("Choisissez une option : ");
     }
 
+    public static void displayCreatureMenu() {
+        System.out.println("===== Gérer les Créatures =====s");
+        System.out.println("1. Afficher les créatures");
+        System.out.println("2. Ajouter une créature");
+        System.out.println("4. Retour au menu principal");
+    }
+
+    /**
+     * Affiche le menu de gestion des enclos.
+     */
+    public static void displayEnclosureMenu() {
+        System.out.println("===== Gérer les Enclos =====");
+        System.out.println("1. Afficher les enclos");
+        System.out.println("2. Ajouter un enclos");
+        System.out.println("3. Retour au menu principal");
+    }
+
+    /**
+     * Affiche le menu de création des créatures.
+     */
+    public void afficherMenuCreationCreature() {
+        System.out.println("1. Dragon");
+        System.out.println("2. Retour au menu Gestion Creature");
+    }
+
+    public static void addEnclosure() {
+        if (zoo != null) { // Vérifiez si zoo n'est pas null avant d'ajouter un enclos
+            System.out.print("Nom de l'enclos : ");
+            String enclosureName = scanner.next();
+
+            System.out.print("Superficie de l'enclos (mètres carrés) : ");
+            double enclosureArea = scanner.nextDouble();
+
+            System.out.print("Capacité maximale de l'enclos : ");
+            int maxCapacity = scanner.nextInt();
+
+            System.out.print("Propreté de l'enclos (BON, MOYEN, MAUVAIS) : ");
+            Cleanliness cleanliness = Cleanliness.valueOf(scanner.next().toUpperCase());
+
+            Enclosure newEnclosure = new Enclosure(enclosureName, enclosureArea, maxCapacity, cleanliness);
+            enclosureList.add(newEnclosure);
+            // zoo.addEnclosure(newEnclosure);
+
+            System.out.println("Enclos ajouté avec succès !");
+        } else {
+            System.out.println("Veuillez d'abord créer un zoo.");
+        }
+    }
+
+    public void displayEnclosureNames() {
+        System.out.println("Liste des enclos :");
+        for (int i = 0; i < enclosureList.size(); i++) {
+            Enclosure enclosure = enclosureList.get(i);
+            System.out.println((i + 1) + ". " + enclosure.getName());
+        }
+    }
+
+    public void displayEnclosureDetails(int enclosureIndex) {
+        if (enclosureIndex >= 0 && enclosureIndex < enclosureList.size()) {
+            Enclosure enclosure = enclosureList.get(enclosureIndex);
+            System.out.println("Détails de l'enclos " + enclosure.getName() + " :");
+            enclosure.displayInfo();
+        } else {
+            System.out.println("Index d'enclos invalide.");
+        }
+    }
+
+    /**
+     * Exécute le menu de gestion des créatures.
+     */
+    public void runCreatureMenu() {
+        int creatureChoice;
+
+        do {
+            displayCreatureMenu();
+            System.out.print("Choisissez une option : ");
+            creatureChoice = scanner.nextInt();
+
+            switch (creatureChoice) {
+                case 1:
+                    System.out.println("Affichage des créatures...");
+                    creatureManager.displayCreatures();
+                    break;
+                case 2:
+                    System.out.println("Ajout d'une créature...");
+                    creatureManager.addCreatureFromUserInput();
+                    break;
+                case 3:
+                    System.out.println("Soigner une créature...");
+                    break;
+                case 4:
+                    System.out.println("Retour au menu principal.");
+                    break;
+                default:
+                    System.out.println("Option invalide. Veuillez choisir à nouveau.");
+            }
+        } while (creatureChoice != 4);
+    }
+
+    /**
+     * Exécute le menu de gestion des enclos.
+     */
+    public void runEnclosureMenu() {
+        int enclosureChoice;
+
+        do {
+            displayEnclosureMenu();
+            System.out.print("Choisissez une option : ");
+            enclosureChoice = scanner.nextInt();
+
+            switch (enclosureChoice) {
+                case 1:
+                    // Afficher les noms des enclos
+                    displayEnclosureNames();
+
+                    // Laisser l'utilisateur choisir un enclos pour afficher les détails
+                    System.out.print("Choisissez un enclos pour afficher les détails (0 pour revenir) : ");
+                    int selectedEnclosureIndex = scanner.nextInt() - 1;
+
+                    if (selectedEnclosureIndex >= 0 && selectedEnclosureIndex < enclosureList.size()) {
+                        displayEnclosureDetails(selectedEnclosureIndex);
+                    } else if (selectedEnclosureIndex != -1) {
+                        System.out.println("Index d'enclos invalide.");
+                    }
+                    break;
+                case 2:
+                    // Ajouter la logique pour ajouter un enclos
+                    System.out.println("Ajout d'un enclos...");
+                    addEnclosure();
+                    break;
+                case 3:
+                    System.out.println("Retour au menu principal.");
+                    break;
+                default:
+                    System.out.println("Option invalide. Veuillez choisir à nouveau.");
+            }
+        } while (enclosureChoice != 3);
+    }
+
     /**
      * Affiche le menu de création du zoo fantastique.
      * 
@@ -107,10 +257,10 @@ public class ZooManager {
                     String name = setName();
                     int maxEnclosures = setMaxEnclosures();
 
-                    Zoo newZoo = new Zoo(name, maxEnclosures);
+                    zoo = new Zoo(name, maxEnclosures, zooKeeper); // Attribuez le nouveau zoo à la variable zoo
 
                     System.out.println("Zoo ajouté avec succès !");
-                    return newZoo;
+                    return zoo;
                 case 2:
                     System.out.println("Aurevoir !");
                     System.exit(0); // 0 indique une sortie normale
@@ -123,4 +273,5 @@ public class ZooManager {
         // Si l'utilisateur choisit l'option 2, retourne null
         return null;
     }
+
 }

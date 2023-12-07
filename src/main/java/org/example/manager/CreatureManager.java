@@ -17,10 +17,9 @@ import java.util.ArrayList;
 public class CreatureManager {
     private static List<Creature> creatures = new ArrayList<>();
     private static List<Thread> creatureThreads = new ArrayList<>();
-    private static List<Enclosure> enclosureList = new ArrayList<>();
     private static Enclosure enclosParDefaut;
-    private static ZooKeeper zooKeeper;
     static Zoo zoo;
+    public static ZooManager zooManager = new ZooManager();
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -58,37 +57,9 @@ public class CreatureManager {
     }
 
     /**
-     * Affiche le menu de gestion des créatures.
-     */
-    public static void displayCreatureMenu() {
-        System.out.println("===== Gérer les Créatures =====s");
-        System.out.println("1. Afficher les créatures");
-        System.out.println("2. Ajouter une créature");
-        System.out.println("4. Retour au menu principal");
-    }
-
-    /**
-     * Affiche le menu de gestion des enclos.
-     */
-    public static void displayEnclosureMenu() {
-        System.out.println("===== Gérer les Enclos =====");
-        System.out.println("1. Afficher les enclos");
-        System.out.println("2. Ajouter un enclos");
-        System.out.println("3. Retour au menu principal");
-    }
-
-    /**
-     * Affiche le menu de création des créatures.
-     */
-    public static void afficherMenuCreationCreature() {
-        System.out.println("1. Dragon");
-        System.out.println("2. Retour au menu Gestion Creature");
-    }
-
-    /**
      * Affiche la liste des créatures avec leur nom et leur niveau de faim.
      */
-    public static void displayCreatures() {
+    public void displayCreatures() {
         System.out.println("===== Liste des Créatures =====");
 
         if (creatures != null) {
@@ -244,79 +215,14 @@ public class CreatureManager {
     }
 
     /**
-     * Exécute le menu de gestion des enclos.
-     */
-    public void runEnclosureMenu() {
-        int enclosureChoice;
-
-        do {
-            displayEnclosureMenu();
-            System.out.print("Choisissez une option : ");
-            enclosureChoice = scanner.nextInt();
-
-            switch (enclosureChoice) {
-                case 1:
-                    // Ajouter la logique pour afficher les enclos
-
-                    for (Enclosure enclosure : enclosureList) {
-                        zooKeeper.examineEnclosure(enclosure);
-                        System.out.println();
-                    }
-                    break;
-                case 2:
-                    // Ajouter la logique pour ajouter un enclos
-                    System.out.println("Ajout d'un enclos...");
-                    break;
-                case 3:
-                    System.out.println("Retour au menu principal.");
-                    break;
-                default:
-                    System.out.println("Option invalide. Veuillez choisir à nouveau.");
-            }
-        } while (enclosureChoice != 3);
-    }
-
-    /**
-     * Exécute le menu de gestion des créatures.
-     */
-    public void runCreatureMenu() {
-        int creatureChoice;
-
-        do {
-            displayCreatureMenu();
-            System.out.print("Choisissez une option : ");
-            creatureChoice = scanner.nextInt();
-
-            switch (creatureChoice) {
-                case 1:
-                    System.out.println("Affichage des créatures...");
-                    displayCreatures();
-                    break;
-                case 2:
-                    System.out.println("Ajout d'une créature...");
-                    addCreatureFromUserInput();
-                    break;
-                case 3:
-                    System.out.println("Soigner une créature...");
-                    break;
-                case 4:
-                    System.out.println("Retour au menu principal.");
-                    break;
-                default:
-                    System.out.println("Option invalide. Veuillez choisir à nouveau.");
-            }
-        } while (creatureChoice != 4);
-    }
-
-    /**
      * Ajoute une créature en fonction de l'entrée utilisateur.
      */
-    public static void addCreatureFromUserInput() {
+    public void addCreatureFromUserInput() {
         int creatureChoice;
 
         do {
             System.out.println("Quelle Creature souhaitez-vous créer? ");
-            afficherMenuCreationCreature();
+            zooManager.afficherMenuCreationCreature();
 
             while (!scanner.hasNextInt()) {
                 System.out.println("Veuillez entrer un nombre entier.");

@@ -26,10 +26,10 @@ public class Main {
 
                 switch (mainChoice) {
                     case 1:
-                        creatureManager.runCreatureMenu();
+                        zooManager.runCreatureMenu();
                         break;
                     case 2:
-                        creatureManager.runEnclosureMenu();
+                        zooManager.runEnclosureMenu();
                         break;
                     case 3:
                         // Ajouter la logique pour simuler le passage du temps
