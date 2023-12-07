@@ -3,19 +3,33 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+/**
+ * Represents a zoo that contains enclosures and creatures.
+ */
 public class Zoo {
+
     private String name;
     private ZooKeeper zooKeeper;
     private int maxEnclosures;
     private List<Enclosure> enclosures;
 
+    /**
+     * Constructs a zoo with the specified name and maximum number of enclosures.
+     *
+     * @param name           The name of the zoo.
+     * @param maxEnclosures The maximum number of enclosures in the zoo.
+     */
     public Zoo(String name, int maxEnclosures) {
         this.name = name;
         this.zooKeeper = null;
         this.maxEnclosures = maxEnclosures;
         this.enclosures = new ArrayList<>();
     }
-    // Affiche le nombre total de créatures dans le zoo
+
+    /**
+     * Displays the total number of creatures in the zoo.
+     */
     public void displayTotalNumberOfCreatures() {
         int total = 0;
         for (Enclosure enclosure : enclosures) {
@@ -24,7 +38,9 @@ public class Zoo {
         System.out.println("Nombre total de créatures dans le zoo: " + total);
     }
 
-    // Affiche les créatures dans tous les enclos
+    /**
+     * Displays the creatures in all enclosures of the zoo.
+     */
     public void displayCreaturesInAllEnclosures() {
         for (Enclosure enclosure : enclosures) {
             System.out.println("Enclos: " + enclosure.getName());
@@ -32,35 +48,37 @@ public class Zoo {
         }
     }
 
-    // Applique des événements aléatoires dans le zoo
+    /**
+     * Applies random events to the creatures and enclosures in the zoo.
+     */
     public void applyRandomEvents() {
         Random random = new Random();
         for (Enclosure enclosure : enclosures) {
             for (Creature creature : enclosure.getCreatures()) {
-                // Endormir ou réveiller les créatures aléatoirement
+                // Randomly put creatures to sleep or wake them up
                 if (random.nextBoolean()) {
                     creature.sleep();
                 } else {
                     creature.wake();
                 }
 
-                // Modifier aléatoirement la santé des créatures
+                // Randomly modify creature's health
                 if (random.nextBoolean()) {
-                    creature.heal(); // Guérir la créature
+                    creature.heal();
                 }
 
-                // Nourrir la créature aléatoirement
+                // Randomly feed the creature
                 if (random.nextBoolean()) {
-                    creature.eat(); // Nourrir la créature
+                    creature.eat();
                 }
 
-                // Vieillir la créature aléatoirement
+                // Randomly age the creature
                 if (random.nextBoolean()) {
-                    creature.old(); // Vieillir la créature
+                    creature.old();
                 }
             }
 
-            // Modifier aléatoirement l'état des enclos
+            // Randomly modify the cleanliness state of the enclosure
             if (random.nextBoolean()) {
                 enclosure.setCleanliness(Cleanliness.values()[random.nextInt(Cleanliness.values().length)]);
             }

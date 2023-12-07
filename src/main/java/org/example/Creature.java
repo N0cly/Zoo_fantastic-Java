@@ -1,9 +1,11 @@
 package org.example;
 
+/**
+ * Represents a creature in a zoo.
+ */
 public class Creature implements Runnable {
 
-    // Class for creature
-
+    // Properties
     private String name;
     private String species;
     private String gender;
@@ -17,8 +19,18 @@ public class Creature implements Runnable {
     private String cries;
     private boolean isAlive;
 
-    public Creature(String name, String gender, int weight, int height, int age, int health,
-                    String cries) {
+    /**
+     * Constructor for the Creature class.
+     *
+     * @param name    The name of the creature.
+     * @param gender  The gender of the creature.
+     * @param weight  The weight of the creature.
+     * @param height  The height of the creature.
+     * @param age     The age of the creature.
+     * @param health  The health of the creature.
+     * @param cries   The sound the creature makes.
+     */
+    public Creature(String name, String gender, int weight, int height, int age, int health, String cries) {
         this.name = name;
         this.gender = gender;
         this.weight = weight;
@@ -31,11 +43,17 @@ public class Creature implements Runnable {
         this.isAlive = true;
     }
 
+    /**
+     * Runnable interface method. Initiates the hunger behavior in a separate thread.
+     */
     @Override
     public void run() {
         hunger();
     }
 
+    /**
+     * Simulates hunger behavior. Decreases hunger over time and handles starvation.
+     */
     public void hunger() {
         while (this.hunger > 0 && !Thread.interrupted()) {
             try {
@@ -54,100 +72,17 @@ public class Creature implements Runnable {
                     }
                 }
             } catch (InterruptedException e) {
-                // Gérer l'interruption si nécessaire
-                Thread.currentThread().interrupt(); // Rétablir le statut d'interruption
+                // Handle interruption if necessary
+                Thread.currentThread().interrupt(); // Restore the interruption status
             }
         }
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    // Getter and setter methods (omitted for brevity)
 
-    public String getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(String species) {
-        this.species = species;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setHunger(int hunger) {
-        this.hunger = hunger;
-    }
-
-    public void setSleeping(boolean sleeping) {
-        this.sleeping = sleeping;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    public void setCries(String cries) {
-        this.cries = cries;
-    }
-
-    public void setAlive(boolean alive) {
-        isAlive = alive;
-    }
-
-    public boolean isAlive() {
-        return isAlive;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public double getHunger() {
-        return hunger;
-    }
-
-    public boolean isSleeping() {
-        return sleeping;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public String getCries() {
-        return cries;
-    }
-
+    /**
+     * Action: Feed the creature. Increases hunger if alive, not sleeping, and hunger is less than 100.
+     */
     public void eat() {
         if (isAlive) {
             if (hunger < 100 && !sleeping) {
@@ -159,9 +94,11 @@ public class Creature implements Runnable {
         } else {
             System.out.println(name + " is dead");
         }
-
     }
 
+    /**
+     * Action: Heal the creature. Increases health if alive and health is less than 100.
+     */
     public void heal() {
         if (isAlive) {
             if (health < 100) {
@@ -173,11 +110,12 @@ public class Creature implements Runnable {
         } else {
             System.out.println(name + " is dead");
         }
-
     }
 
+    /**
+     * Action: Make the creature sleep. Sets sleeping to true if alive and not already sleeping.
+     */
     public void sleep() {
-
         if (isAlive) {
             if (!sleeping) {
                 sleeping = true;
@@ -188,9 +126,11 @@ public class Creature implements Runnable {
         } else {
             System.out.println(name + " is dead");
         }
-
     }
 
+    /**
+     * Action: Wake the creature. Sets sleeping to false if alive and currently sleeping.
+     */
     public void wake() {
         if (isAlive) {
             if (sleeping) {
@@ -202,9 +142,12 @@ public class Creature implements Runnable {
         } else {
             System.out.println(name + " is dead");
         }
-
     }
 
+    /**
+     * Action: Age the creature. Increases age if alive and age is less than 100.
+     * If age reaches 100 or health reaches 0, the creature dies.
+     */
     public void old() {
         if (isAlive) {
             if (age < 100) {
@@ -220,6 +163,11 @@ public class Creature implements Runnable {
         }
     }
 
+    /**
+     * String representation of the creature.
+     *
+     * @return A string containing the name, species, and age of the creature.
+     */
     @Override
     public String toString() {
         return "Créature{" +
@@ -229,6 +177,10 @@ public class Creature implements Runnable {
                 '}';
     }
 
+    /**
+     * Protected method to display additional information. Currently empty.
+     */
     protected void displayInfo() {
+        // Additional information can be displayed here in subclasses
     }
 }

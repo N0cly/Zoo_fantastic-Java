@@ -10,18 +10,31 @@ import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
 
+/**
+ * Cette classe gère les créatures et les opérations associées dans le zoo fantastique.
+ */
 public class CreatureManager {
     private static List<Creature> creatures;
     private static List<Thread> creatureThreads;
     private static Enclosure enclosParDefaut;
     private static Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Constructeur de la classe CreatureManager.
+     *
+     * @param enclosParDefaut L'enclos par défaut dans le zoo fantastique.
+     */
     public CreatureManager(Enclosure enclosParDefaut) {
         CreatureManager.enclosParDefaut = enclosParDefaut;
         CreatureManager.creatures = new ArrayList<>();
         CreatureManager.creatureThreads = new ArrayList<>();
     }
 
+    /**
+     * Ajoute une créature à la liste et démarre un thread pour la créature.
+     *
+     * @param creature La créature à ajouter.
+     */
     public static void addCreature(Creature creature) {
         creatures.add(creature);
 
@@ -30,10 +43,18 @@ public class CreatureManager {
         creatureThread.start();
     }
 
+    /**
+     * Renvoie la liste des créatures.
+     *
+     * @return La liste des créatures.
+     */
     public List<Creature> getCreatures() {
         return creatures;
     }
 
+    /**
+     * Affiche le menu principal du zoo fantastique.
+     */
     public static void displayMainMenu() {
         System.out.println("===== Zoo Fantastique Menu =====");
         System.out.println("1. Gérer les créatures");
@@ -42,6 +63,9 @@ public class CreatureManager {
         System.out.print("Choisissez une option : ");
     }
 
+    /**
+     * Affiche le menu de gestion des créatures.
+     */
     public static void displayCreatureMenu() {
         System.out.println("===== Gérer les Créatures =====s");
         System.out.println("1. Afficher les créatures");
@@ -49,6 +73,9 @@ public class CreatureManager {
         System.out.println("4. Retour au menu principal");
     }
 
+    /**
+     * Affiche le menu de gestion des enclos.
+     */
     public static void displayEnclosureMenu() {
         System.out.println("===== Gérer les Enclos =====");
         System.out.println("1. Afficher les enclos");
@@ -56,12 +83,17 @@ public class CreatureManager {
         System.out.println("3. Retour au menu principal");
     }
 
+    /**
+     * Affiche le menu de création des créatures.
+     */
     public static void afficherMenuCreationCreature() {
         System.out.println("1. Dragon");
-
         System.out.println("2. Retour au menu Gestion Creature");
     }
 
+    /**
+     * Affiche la liste des créatures avec leur nom et leur niveau de faim.
+     */
     public static void displayCreatures() {
         System.out.println("===== Liste des Créatures =====");
 
@@ -74,10 +106,20 @@ public class CreatureManager {
         }
     }
 
+    /**
+     * Supprime une créature de la liste.
+     *
+     * @param creature La créature à supprimer.
+     */
     public void removeCreature(Creature creature) {
         creatures.remove(creature);
     }
 
+    /**
+     * Demande et renvoie le nom de la créature saisi par l'utilisateur.
+     *
+     * @return Le nom de la créature.
+     */
     public static String setName() {
         System.out.print("Nom de la créature : ");
         String name = scanner.nextLine().trim();
@@ -90,6 +132,11 @@ public class CreatureManager {
         return name;
     }
 
+    /**
+     * Demande et renvoie le type de la créature saisi par l'utilisateur.
+     *
+     * @return Le type de la créature.
+     */
     public static String setType() {
         System.out.print("Male(M) ou Femelle(F) (defaut F): ");
         String stype = scanner.nextLine().trim();
@@ -118,6 +165,11 @@ public class CreatureManager {
         return "Femelle";
     }
 
+    /**
+     * Demande et renvoie le poids de la créature saisi par l'utilisateur.
+     *
+     * @return Le poids de la créature.
+     */
     public static int setWeight() {
         System.out.print("Poids de la créature (defaut = 80) : ");
         String weightInput = scanner.nextLine().trim();
@@ -134,6 +186,11 @@ public class CreatureManager {
         return 80;
     }
 
+    /**
+     * Demande et renvoie la taille de la créature saisi par l'utilisateur.
+     *
+     * @return La taille de la créature.
+     */
     public static int setHeight() {
         System.out.print("Taille de la créature (defaut = 110) : ");
         String heightInput = scanner.nextLine().trim();
@@ -150,6 +207,11 @@ public class CreatureManager {
         return 110;
     }
 
+    /**
+     * Demande et renvoie l'âge de la créature saisi par l'utilisateur.
+     *
+     * @return L'âge de la créature.
+     */
     public static int setAge() {
         System.out.print("Age de la créature (defaut = 10) : ");
         String ageInput = scanner.nextLine().trim();
@@ -166,6 +228,11 @@ public class CreatureManager {
         return 10;
     }
 
+    /**
+     * Demande et renvoie la santé de la créature saisi par l'utilisateur.
+     *
+     * @return La santé de la créature.
+     */
     public static int setHealth() {
         System.out.print("Santé de la créature (defaut = 100) : ");
         String healthInput = scanner.nextLine().trim();
@@ -182,8 +249,10 @@ public class CreatureManager {
         return 100;
     }
 
+    /**
+     * Exécute le menu de gestion des enclos.
+     */
     void runEnclosureMenu() {
-
         int enclosureChoice;
 
         do {
@@ -209,8 +278,10 @@ public class CreatureManager {
         } while (enclosureChoice != 3);
     }
 
+    /**
+     * Exécute le menu de gestion des créatures.
+     */
     void runCreatureMenu() {
-
         int creatureChoice;
 
         do {
@@ -239,8 +310,10 @@ public class CreatureManager {
         } while (creatureChoice != 4);
     }
 
+    /**
+     * Ajoute une créature en fonction de l'entrée utilisateur.
+     */
     public static void addCreatureFromUserInput() {
-
         int creatureChoice;
 
         do {
@@ -271,8 +344,7 @@ public class CreatureManager {
                     age = setAge();
                     health = setHealth();
 
-
-                    Dragon newDragon = new Dragon(name, type, weight, height, age , health, "Grr Grr");
+                    Dragon newDragon = new Dragon(name, type, weight, height, age, health, "Grr Grr");
 
                     addCreature(newDragon);
 
@@ -296,20 +368,38 @@ public class CreatureManager {
         } while (creatureChoice != 2);
     }
 
+    /**
+     * Ajoute un thread pour la créature.
+     *
+     * @param creatureThread Le thread de la créature.
+     */
     public void addCreatureThread(Thread creatureThread) {
         creatureThreads.add(creatureThread);
     }
 
+    /**
+     * Renvoie la liste des threads des créatures.
+     *
+     * @return La liste des threads des créatures.
+     */
     public List<Thread> getCreatureThreads() {
         return creatureThreads;
     }
 
+    /**
+     * Ferme le scanner.
+     */
     public void closeScanner() {
         // scanner.close();
     }
 
+    /**
+     * Vérifie si la chaîne donnée est numérique.
+     *
+     * @param str La chaîne à vérifier.
+     * @return true si la chaîne est numérique, sinon false.
+     */
     private static boolean isNumeric(String str) {
         return str.matches("\\d+");
     }
-
 }
