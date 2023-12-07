@@ -62,10 +62,12 @@ public class ZooManager {
 
     /**
      * Affiche le menu de création du zoo fantastique.
+     * 
+     * @return
      *
      * @throws InterruptedException
      */
-    public static void displayZooCreationMenu() throws InterruptedException {
+    public Zoo displayZooCreationMenu() throws InterruptedException {
         int creatureChoice;
 
         do {
@@ -88,28 +90,24 @@ public class ZooManager {
                 case 1:
                     System.out.println("Ajout d'un zoo...");
 
-                    String name = "name";
-                    int maxEnclosures = 10;
-
-                    name = setName();
-                    maxEnclosures = setMaxEnclosures();
+                    String name = setName();
+                    int maxEnclosures = setMaxEnclosures();
 
                     Zoo newZoo = new Zoo(name, maxEnclosures);
 
                     System.out.println("Zoo ajouté avec succès !");
                     sleep(2000);
-
-                    break;
+                    return newZoo;
                 case 2:
                     System.out.println("Aurevoir !");
-                    break;
+                    System.exit(0); // 0 indique une sortie normale
                 default:
                     System.out.println("Option invalide. Veuillez choisir à nouveau.");
             }
 
-            if (creatureChoice == 2) {
-                break;
-            }
         } while (creatureChoice != 2);
+
+        // Si l'utilisateur choisit l'option 2, retourne null
+        return null;
     }
 }

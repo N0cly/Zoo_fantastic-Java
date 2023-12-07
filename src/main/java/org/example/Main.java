@@ -10,24 +10,35 @@ import java.util.Scanner;
 public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final List<Thread> creatureThreads = new ArrayList<>();
+    private static List<Thread> creatureThreads = new ArrayList<>();
+    private static List<Enclosure> enclosureList = new ArrayList<>();
     static Enclosure sansEnclos = new Enclosure("Sans Enclos", 150, 4, Cleanliness.BON);
     static CreatureManager creatureManager = new CreatureManager(sansEnclos);
     static ZooManager zooManager = new ZooManager();
+
     public static void main(String[] args) throws InterruptedException {
         int mainChoice;
         do {
-            zooManager.displayZooCreationMenu();
+            Zoo zoo = zooManager.displayZooCreationMenu();
 
-            //CreatureManager.displayMainMenu();
+            if (zoo != null) {
+                // Utiliser le zoo créé
+                System.out.println("Nom du zoo créé : " + zoo.getName());
+                // ... Autres opérations avec le zoo
+            } else {
+                // Le programme a été quitté
+                System.out.println("Le programme a été quitté.");
+            }
+
+            CreatureManager.displayMainMenu();
             mainChoice = scanner.nextInt();
 
             switch (mainChoice) {
                 case 1:
-                    //creatureManager.runCreatureMenu();
+                    creatureManager.runCreatureMenu();
                     break;
                 case 2:
-                    //creatureManager.runEnclosureMenu();
+                    creatureManager.runEnclosureMenu();
                     break;
                 case 3:
                     // Ajouter la logique pour simuler le passage du temps

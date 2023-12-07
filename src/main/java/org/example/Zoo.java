@@ -84,4 +84,8 @@ public class Zoo {
             }
         }
     }
+
+    public String getName() {
+        return this.name;
+    }
 }

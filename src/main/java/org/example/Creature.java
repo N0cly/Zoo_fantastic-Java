@@ -22,13 +22,13 @@ public class Creature implements Runnable {
     /**
      * Constructor for the Creature class.
      *
-     * @param name    The name of the creature.
-     * @param gender  The gender of the creature.
-     * @param weight  The weight of the creature.
-     * @param height  The height of the creature.
-     * @param age     The age of the creature.
-     * @param health  The health of the creature.
-     * @param cries   The sound the creature makes.
+     * @param name   The name of the creature.
+     * @param gender The gender of the creature.
+     * @param weight The weight of the creature.
+     * @param height The height of the creature.
+     * @param age    The age of the creature.
+     * @param health The health of the creature.
+     * @param cries  The sound the creature makes.
      */
     public Creature(String name, String gender, int weight, int height, int age, int health, String cries) {
         this.name = name;
@@ -44,7 +44,8 @@ public class Creature implements Runnable {
     }
 
     /**
-     * Runnable interface method. Initiates the hunger behavior in a separate thread.
+     * Runnable interface method. Initiates the hunger behavior in a separate
+     * thread.
      */
     @Override
     public void run() {
@@ -78,10 +79,97 @@ public class Creature implements Runnable {
         }
     }
 
-    // Getter and setter methods (omitted for brevity)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public double getHunger() {
+        return hunger;
+    }
+
+    public void setHunger(double hunger) {
+        this.hunger = hunger;
+    }
+
+    public boolean isSleeping() {
+        return sleeping;
+    }
+
+    public void setSleeping(boolean sleeping) {
+        this.sleeping = sleeping;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public String getCries() {
+        return cries;
+    }
+
+    public void setCries(String cries) {
+        this.cries = cries;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean isAlive) {
+        this.isAlive = isAlive;
+    }
 
     /**
-     * Action: Feed the creature. Increases hunger if alive, not sleeping, and hunger is less than 100.
+     * Action: Feed the creature. Increases hunger if alive, not sleeping, and
+     * hunger is less than 100.
      */
     public void eat() {
         if (isAlive) {
@@ -97,7 +185,8 @@ public class Creature implements Runnable {
     }
 
     /**
-     * Action: Heal the creature. Increases health if alive and health is less than 100.
+     * Action: Heal the creature. Increases health if alive and health is less than
+     * 100.
      */
     public void heal() {
         if (isAlive) {
@@ -113,7 +202,8 @@ public class Creature implements Runnable {
     }
 
     /**
-     * Action: Make the creature sleep. Sets sleeping to true if alive and not already sleeping.
+     * Action: Make the creature sleep. Sets sleeping to true if alive and not
+     * already sleeping.
      */
     public void sleep() {
         if (isAlive) {
@@ -129,7 +219,8 @@ public class Creature implements Runnable {
     }
 
     /**
-     * Action: Wake the creature. Sets sleeping to false if alive and currently sleeping.
+     * Action: Wake the creature. Sets sleeping to false if alive and currently
+     * sleeping.
      */
     public void wake() {
         if (isAlive) {

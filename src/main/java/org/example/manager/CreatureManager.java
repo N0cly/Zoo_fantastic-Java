@@ -2,21 +2,24 @@ package org.example.manager;
 
 import org.example.Creature;
 import org.example.Enclosure;
+import org.example.ZooKeeper;
 import org.example.creatures.Dragon;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import static java.lang.Thread.sleep;
-
 /**
- * Cette classe gère les créatures et les opérations associées dans le zoo fantastique.
+ * Cette classe gère les créatures et les opérations associées dans le zoo
+ * fantastique.
  */
 public class CreatureManager {
-    private static List<Creature> creatures;
-    private static List<Thread> creatureThreads;
+    private static List<Creature> creatures = new ArrayList<>();
+    private static List<Thread> creatureThreads = new ArrayList<>();
+    private static List<Enclosure> enclosureList = new ArrayList<>();
     private static Enclosure enclosParDefaut;
+    private static ZooKeeper zooKeeper;
+
     private static Scanner scanner = new Scanner(System.in);
 
     /**
@@ -252,7 +255,7 @@ public class CreatureManager {
     /**
      * Exécute le menu de gestion des enclos.
      */
-    void runEnclosureMenu() {
+    public void runEnclosureMenu() {
         int enclosureChoice;
 
         do {
@@ -263,7 +266,11 @@ public class CreatureManager {
             switch (enclosureChoice) {
                 case 1:
                     // Ajouter la logique pour afficher les enclos
-                    Enclosure.displayEnclosure();
+
+                    for (Enclosure enclosure : enclosureList) {
+                        zooKeeper.examineEnclosure(enclosure);
+                        System.out.println();
+                    }
                     break;
                 case 2:
                     // Ajouter la logique pour ajouter un enclos
@@ -281,7 +288,7 @@ public class CreatureManager {
     /**
      * Exécute le menu de gestion des créatures.
      */
-    void runCreatureMenu() {
+    public void runCreatureMenu() {
         int creatureChoice;
 
         do {

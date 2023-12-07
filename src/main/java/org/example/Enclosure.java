@@ -12,6 +12,7 @@ public class Enclosure {
     private double area;
     private int maxCapacity;
     private List<Creature> creatures;
+    private static List<Enclosure> enclosureList = new ArrayList<>();
     private Cleanliness cleanliness;
 
     /**
@@ -28,6 +29,7 @@ public class Enclosure {
         this.maxCapacity = maxCapacity;
         this.creatures = new ArrayList<>();
         this.cleanliness = cleanliness;
+        enclosureList.add(this);
     }
 
     /**
@@ -53,7 +55,8 @@ public class Enclosure {
     }
 
     /**
-     * Displays information about the enclosure, including its name, area, maximum capacity,
+     * Displays information about the enclosure, including its name, area, maximum
+     * capacity,
      * cleanliness, and the creatures present in the enclosure.
      */
     public void displayInfo() {
@@ -74,7 +77,8 @@ public class Enclosure {
     }
 
     /**
-     * Performs maintenance on the enclosure by cleaning it if it's empty and not already clean.
+     * Performs maintenance on the enclosure by cleaning it if it's empty and not
+     * already clean.
      */
     public void maintainEnclosure() {
         if (creatures.isEmpty() && cleanliness != Cleanliness.BON) {
