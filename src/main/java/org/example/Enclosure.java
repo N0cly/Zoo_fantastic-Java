@@ -241,14 +241,12 @@ public class Enclosure {
      * Displays the names of creatures in the enclosure.
      */
     public void displayCreaturesList() {
-        System.out.println("Liste des créatures dans l'enclos " + name + ":");
         if (!creatures.isEmpty()) {
-            for (int i = 0; i < creatures.size(); i++) {
-                Creature creature = creatures.get(i);
-                System.out.println((i + 1) + ". " + creature.getName());
+            for (Creature creature : creatures) {
+                System.out.println(creature.getName());
             }
         } else {
-            System.out.println("Aucune créature présente dans l'enclos.");
+            System.out.println("Il n'y a pas de créatures dans cet enclos.");
         }
     }
 

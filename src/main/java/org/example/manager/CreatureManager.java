@@ -4,7 +4,7 @@ import org.example.Creature;
 import org.example.Enclosure;
 import org.example.Zoo;
 import org.example.ZooKeeper;
-import org.example.creatures.Dragon;
+import org.example.creatures.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -231,6 +231,17 @@ public class CreatureManager {
         return 100;
     }
 
+    public static String setCries() {
+        System.out.print("Cri de la créature (defaut = Grr Grr) : ");
+        String criesInput = scanner.nextLine().trim();
+        if (!criesInput.isEmpty()) {
+            System.out.println("Cri : " + criesInput);
+            return criesInput;
+        }
+        System.out.println("Cri par défaut : Grr Grr");
+        return "Grr Grr";
+    }
+
     /**
      * Ajoute une créature en fonction de l'entrée utilisateur.
      */
@@ -252,40 +263,210 @@ public class CreatureManager {
             switch (creatureChoice) {
                 case 1:
                     // Création d'un dragon...
-                    int health = 100;
-                    int age = 10;
-                    int height = 110;
-                    int weight = 80;
-                    String name = "name";
-                    String type = "Femelle";
+                    int healthDragon = 100;
+                    int ageDragon = 10;
+                    int heightDragon = 110;
+                    int weightDragon = 80;
+                    String nameDragon = "name";
+                    String typeDragon = "Femelle";
 
-                    name = setName();
-                    type = setType();
-                    weight = setWeight();
-                    height = setHeight();
-                    age = setAge();
-                    health = setHealth();
+                    nameDragon = setName();
+                    typeDragon = setType();
+                    weightDragon = setWeight();
+                    heightDragon = setHeight();
+                    ageDragon = setAge();
+                    healthDragon = setHealth();
 
-                    Dragon newDragon = new Dragon(name, type, weight, height, age, health, "Grr Grr");
+                    Dragon newDragon = new Dragon(nameDragon, typeDragon, weightDragon, heightDragon, ageDragon, healthDragon, "Grr Grr");
 
                     // Ajout de la créature à un enclos
                     zooManager.addCreatureToEnclosure(newDragon);
 
                     addCreature(newDragon);
 
-                    System.out.println("Dragon ajouté avec succès !");
+                    System.out.println(nameDragon + " ajouté avec succès !");
                     break;
                 case 2:
+                    // Création d'un kraken
+                    System.out.println("Création d'un kraken...");
+
+                    int healthKraken = 100;
+                    int ageKraken = 10;
+                    int heightKraken = 110;
+                    int weightKraken = 80;
+                    String nameKraken = "name";
+                    String typeKraken = "Femelle";
+                    String criesKraken = "Grr Grr";
+
+                    nameKraken = setName();
+                    typeKraken = setType();
+                    weightKraken = setWeight();
+                    heightKraken = setHeight();
+                    ageKraken = setAge();
+                    healthKraken = setHealth();
+                    criesKraken = setCries();
+
+                    Kraken kraken = new Kraken(nameKraken, typeKraken, weightKraken, heightKraken, ageKraken, healthKraken, criesKraken);
+
+                    zooManager.addCreatureToEnclosure(kraken);
+
+                    addCreature(kraken);
+
+                    System.out.println(nameKraken + " ajouté avec succès !");
+                    break;
+                case 3:
+                    // creation d'un lycanhropes
+                    System.out.println("Création d'un lycanhropes...");
+
+                    int healthLycanhropes = 100;
+                    int ageLycanhropes = 10;
+                    int heightLycanhropes = 110;
+                    int weightLycanhropes = 80;
+                    String nameLycanhropes = "name";
+                    String typeLycanhropes = "Femelle";
+                    String criesLycanhropes = "Grr Grr";
+
+                    nameLycanhropes = setName();
+                    typeLycanhropes = setType();
+                    weightLycanhropes = setWeight();
+                    heightLycanhropes = setHeight();
+                    ageLycanhropes = setAge();
+                    healthLycanhropes = setHealth();
+                    criesLycanhropes = setCries();
+
+                    Lycanthrope lycanhropes = new Lycanthrope(nameLycanhropes, typeLycanhropes, weightLycanhropes, heightLycanhropes, ageLycanhropes, healthLycanhropes, criesLycanhropes);
+
+                    zooManager.addCreatureToEnclosure(lycanhropes);
+
+                    addCreature(lycanhropes);
+
+                    System.out.println(nameLycanhropes + " ajouté avec succès !");
+                    break;
+
+                case 4:
+                    //creation d'un megalodon
+                    System.out.println("Création d'un megalodon...");
+
+                    int healthMegalodon = 100;
+                    int ageMegalodon = 10;
+                    int heightMegalodon = 110;
+                    int weightMegalodon = 80;
+                    String nameMegalodon = "name";
+                    String typeMegalodon = "Femelle";
+                    String criesMegalodon = "Grr Grr";
+
+                    nameMegalodon = setName();
+                    typeMegalodon = setType();
+                    weightMegalodon = setWeight();
+                    heightMegalodon = setHeight();
+                    ageMegalodon = setAge();
+                    healthMegalodon = setHealth();
+                    criesMegalodon = setCries();
+
+                    Megalodons megalodon = new Megalodons(nameMegalodon, typeMegalodon, weightMegalodon, heightMegalodon, ageMegalodon, healthMegalodon, criesMegalodon);
+
+                    zooManager.addCreatureToEnclosure(megalodon);
+
+                    addCreature(megalodon);
+
+                    System.out.println(nameMegalodon + " ajouté avec succès !");
+                    break;
+                case 5:
+                    //creation d'un mermaid
+                    System.out.println("Création d'un mermaid...");
+
+                    int healthMermaid = 100;
+                    int ageMermaid = 10;
+                    int heightMermaid = 110;
+                    int weightMermaid = 80;
+                    String nameMermaid = "name";
+                    String typeMermaid = "Femelle";
+                    String criesMermaid = "Grr Grr";
+
+                    nameMermaid = setName();
+                    typeMermaid = setType();
+                    weightMermaid = setWeight();
+                    heightMermaid = setHeight();
+                    ageMermaid = setAge();
+                    healthMermaid = setHealth();
+                    criesMermaid = setCries();
+
+                    Megalodons mermaid = new Megalodons(nameMermaid, typeMermaid, weightMermaid, heightMermaid, ageMermaid, healthMermaid, criesMermaid);
+
+                    zooManager.addCreatureToEnclosure(mermaid);
+
+                    addCreature(mermaid);
+
+                    System.out.println(nameMermaid + " ajouté avec succès !");
+                    break;
+                case 6:
+                    //creation d'un phoenix
+                    System.out.println("Création d'un phoenix...");
+
+                    int healthPhoenix = 100;
+                    int agePhoenix = 10;
+                    int heightPhoenix = 110;
+                    int weightPhoenix = 80;
+                    String namePhoenix = "name";
+                    String typePhoenix = "Femelle";
+                    String criesPhoenix = "Grr Grr";
+
+                    namePhoenix = setName();
+                    typePhoenix = setType();
+                    weightPhoenix = setWeight();
+                    heightPhoenix = setHeight();
+                    agePhoenix = setAge();
+                    healthPhoenix = setHealth();
+                    criesPhoenix = setCries();
+
+                    Phenix phoenix = new Phenix(namePhoenix, typePhoenix, weightPhoenix, heightPhoenix, agePhoenix, healthPhoenix, criesPhoenix);
+
+                    zooManager.addCreatureToEnclosure(phoenix);
+
+                    addCreature(phoenix);
+
+                    System.out.println(namePhoenix + " ajouté avec succès !");
+                    break;
+                case 7:
+                    //creation unicorn
+
+                    System.out.println("Création d'un unicorn...");
+
+                    int healthUnicorn = 100;
+                    int ageUnicorn = 10;
+                    int heightUnicorn = 110;
+                    int weightUnicorn = 80;
+                    String nameUnicorn = "name";
+                    String typeUnicorn = "Femelle";
+                    String criesUnicorn = "Grr Grr";
+
+                    nameUnicorn = setName();
+                    typeUnicorn = setType();
+                    weightUnicorn = setWeight();
+                    heightUnicorn = setHeight();
+                    ageUnicorn = setAge();
+                    healthUnicorn = setHealth();
+                    criesUnicorn = setCries();
+
+                    Unicorn unicorn = new Unicorn(nameUnicorn, typeUnicorn, weightUnicorn, heightUnicorn, ageUnicorn, healthUnicorn, criesUnicorn);
+
+                    zooManager.addCreatureToEnclosure(unicorn);
+
+                    addCreature(unicorn);
+
+                    System.out.println(nameUnicorn + " ajouté avec succès !");
+                    break;
+                case 8:
                     System.out.println("Retour au menu principal.");
                     break;
                 default:
                     System.out.println("Option invalide. Veuillez choisir à nouveau.");
             }
 
-            if (creatureChoice == 2) {
+            if (creatureChoice == 8) {
                 break;
             }
-        } while (creatureChoice != 2);
+        } while (creatureChoice != 8);
     }
 
     /**
@@ -321,5 +502,9 @@ public class CreatureManager {
      */
     private static boolean isNumeric(String str) {
         return str.matches("\\d+");
+    }
+
+    public Scanner getScanner() {
+        return scanner;
     }
 }

@@ -3,6 +3,7 @@ package org.example;
 import org.example.manager.CreatureManager;
 import org.example.manager.ZooManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,6 +17,9 @@ public class Main {
     public static ZooManager zooManager = new ZooManager();
     static Zoo zoo = null;
 
+    static void clearConsole() {
+        System.out.println("\n".repeat(50));
+    }
     public static void main(String[] args) throws InterruptedException {
         int mainChoice;
         zoo = zooManager.displayZooCreationMenu();
@@ -25,6 +29,9 @@ public class Main {
         do {
             if (zoo != null) { // Check if zoo is not null
 
+                // clear console
+//                clearConsole();
+//                zooManager.addEnclosure();
                 zooManager.displayMainMenu(zoo);
                 mainChoice = scanner.nextInt();
 

@@ -106,11 +106,18 @@ public class ZooManager {
      */
     public void afficherMenuCreationCreature() {
         System.out.println("1. Dragon");
-        System.out.println("2. Retour au menu Gestion Creature");
+        System.out.println("2. Kraken");
+        System.out.println("3. Lycanthrope");
+        System.out.println("4. Megalodon");
+        System.out.println("5. Sirène");
+        System.out.println("6. Phoenix");
+        System.out.println("7. Licorne");
+        System.out.println("8. Retour au menu Gestion Creature");
     }
 
     public void addEnclosure() {
         if (zoo != null) { // Vérifiez si zoo n'est pas null avant d'ajouter un enclos
+            System.out.println("Ajout d'un enclos...");
             System.out.print("Nom de l'enclos : ");
             String enclosureName = scanner.next();
 
@@ -272,6 +279,13 @@ public class ZooManager {
         System.out.println("3. Quitter");
     }
 
+    private void createFirstEnclosure() {
+        System.out.println("===== Creation du premier enclo =====");
+        System.out.println("1. Ajouter un enclo");
+        System.out.println("2. Retour au menu principal");
+        System.out.print("Choisissez une option : ");
+    }
+
     /**
      * Affiche le menu de création du zoo fantastique.
      * 
@@ -341,25 +355,15 @@ public class ZooManager {
     }
 
     private void feedCreature(Enclosure enclosure) {
-        List<Creature> creatures = enclosure.getCreatures();
-
-        if (!creatures.isEmpty()) {
-            System.out.println("Choisissez la créature à nourrir :");
-
-            for (int i = 0; i < creatures.size(); i++) {
-                System.out.println((i + 1) + ". " + creatures.get(i).getName());
-            }
-
-            int creatureIndex = scanner.nextInt();
-
-            if (creatureIndex >= 1 && creatureIndex <= creatures.size()) {
-                Creature selectedCreature = creatures.get(creatureIndex - 1);
-                selectedCreature.eat(); // Appelle la méthode eat() de la créature
-            } else {
-                System.out.println("Numéro de créature invalide.");
-            }
+        System.out.println("Choisissez une créature à nourrir :");
+        enclosure.displayCreaturesList();
+        int creatureIndex = scanner.nextInt() - 1;
+        if (creatureIndex >= 0 && creatureIndex < enclosure.getCreatures().size()) {
+            Creature creature = enclosure.getCreatures().get(creatureIndex);
+            creature.setHunger(100);
+            System.out.println(creature.getName() + " a été nourri.");
         } else {
-            System.out.println("Aucune créature présente dans l'enclos.");
+            System.out.println("Index de créature invalide.");
         }
     }
 }
