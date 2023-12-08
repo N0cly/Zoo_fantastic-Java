@@ -194,11 +194,6 @@ public class ZooManager {
 
             switch (enclosureChoice) {
                 case 1:
-                    for (Enclosure enclosure : enclosureList) {
-                        enclosure.removeDeadCreatures();
-                        zooKeeper.examineEnclosure(enclosure);
-                        System.out.println();
-                    }
                     // Afficher les noms des enclos
                     displayEnclosureNames(enclosureList);
 
