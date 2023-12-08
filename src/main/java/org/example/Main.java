@@ -11,6 +11,7 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Thread> creatureThreads = new ArrayList<>();
     static Enclosure sansEnclos = new Enclosure("Sans Enclos", 150, 4, Cleanliness.BON);
+    static List<Enclosure> enclosureList = new ArrayList<>();
     static CreatureManager creatureManager = new CreatureManager(sansEnclos);
     public static ZooManager zooManager = new ZooManager();
     static Zoo zoo = null;
@@ -18,12 +19,12 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         int mainChoice;
         zoo = zooManager.displayZooCreationMenu();
-
-        // Vous n'avez plus besoin de cette ligne
-        // enclosureList.add(sansEnclos);
+        System.out.println("Maintenant, creez un nouvel enclos dans votre zoo");
+        zooManager.addEnclosure();
 
         do {
             if (zoo != null) { // Check if zoo is not null
+
                 zooManager.displayMainMenu(zoo);
                 mainChoice = scanner.nextInt();
 

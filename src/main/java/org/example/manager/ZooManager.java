@@ -107,7 +107,7 @@ public class ZooManager {
         System.out.println("2. Retour au menu Gestion Creature");
     }
 
-    public static void addEnclosure() {
+    public void addEnclosure() {
         if (zoo != null) { // Vérifiez si zoo n'est pas null avant d'ajouter un enclos
             System.out.print("Nom de l'enclos : ");
             String enclosureName = scanner.next();
@@ -118,12 +118,9 @@ public class ZooManager {
             System.out.print("Capacité maximale de l'enclos : ");
             int maxCapacity = scanner.nextInt();
 
-            System.out.print("Propreté de l'enclos (BON, MOYEN, MAUVAIS) : ");
-            Cleanliness cleanliness = Cleanliness.valueOf(scanner.next().toUpperCase());
-
-            Enclosure newEnclosure = new Enclosure(enclosureName, enclosureArea, maxCapacity, cleanliness);
+            Enclosure newEnclosure = new Enclosure(enclosureName, enclosureArea, maxCapacity, Cleanliness.BON);
             enclosureList.add(newEnclosure);
-            // zoo.addEnclosure(newEnclosure);
+            zoo.addEnclosure(newEnclosure);
 
             System.out.println("Enclos ajouté avec succès !");
         }
@@ -215,6 +212,8 @@ public class ZooManager {
                 case 3:
                     System.out.println("Retour au menu principal.");
                     break;
+                case 4:
+                    System.out.println("EnclosureListe: " + enclosureList.toString());
                 default:
                     System.out.println("Option invalide. Veuillez choisir à nouveau.");
             }
