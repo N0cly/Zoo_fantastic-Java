@@ -221,7 +221,7 @@ public class CreatureManager {
         int creatureChoice;
 
         do {
-            System.out.println("Quelle Creature souhaitez-vous créer? ");
+            System.out.println("Quelle créature souhaitez-vous créer? ");
             zooManager.afficherMenuCreationCreature();
 
             while (!scanner.hasNextInt()) {
@@ -234,6 +234,7 @@ public class CreatureManager {
 
             switch (creatureChoice) {
                 case 1:
+                    // Création d'un dragon...
                     int health = 100;
                     int age = 10;
                     int height = 110;
@@ -250,12 +251,10 @@ public class CreatureManager {
 
                     Dragon newDragon = new Dragon(name, type, weight, height, age, health, "Grr Grr");
 
-                    addCreature(newDragon);
+                    // Ajout de la créature à un enclos
+                    zooManager.addCreatureToEnclosure(newDragon);
 
-                    Thread creatureThread = new Thread(newDragon);
-                    creatureThreads.add(creatureThread);
-                    enclosParDefaut.addCreature(newDragon);
-                    creatureThread.start();
+                    addCreature(newDragon);
 
                     System.out.println("Dragon ajouté avec succès !");
                     break;

@@ -1,6 +1,7 @@
 package org.example.manager;
 
 import org.example.Cleanliness;
+import org.example.Creature;
 import org.example.Enclosure;
 import org.example.Zoo;
 import org.example.ZooKeeper;
@@ -269,6 +270,23 @@ public class ZooManager {
 
         // Si l'utilisateur choisit l'option 2, retourne null
         return null;
+    }
+
+    void addCreatureToEnclosure(Creature creature) {
+        // Afficher la liste des enclos
+        displayEnclosureNames(enclosureList);
+
+        // Demander à l'utilisateur de choisir un enclos
+        System.out.print("Choisissez un enclos pour ajouter la créature (0 pour annuler) : ");
+        int selectedEnclosureIndex = scanner.nextInt() - 1;
+
+        if (selectedEnclosureIndex >= 0 && selectedEnclosureIndex < enclosureList.size()) {
+            Enclosure selectedEnclosure = enclosureList.get(selectedEnclosureIndex);
+            selectedEnclosure.addCreature(creature);
+            System.out.println("Créature ajoutée à l'enclos : " + selectedEnclosure.getName());
+        } else if (selectedEnclosureIndex != -1) {
+            System.out.println("Index d'enclos invalide. La créature ne sera pas ajoutée à un enclos.");
+        }
     }
 
 }
