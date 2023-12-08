@@ -48,13 +48,46 @@ public class Enclosure {
 
     public void removeDeadCreatures() {
         Iterator<Creature> iterator = creatures.iterator();
+        boolean creatureRemoved = false; // Ajout d'un indicateur pour savoir si une créature a été retirée
+
         while (iterator.hasNext()) {
             Creature creature = iterator.next();
             if (!creature.isAlive()) {
                 iterator.remove();
+                creatureRemoved = true; // Mettre à jour l'indicateur
                 System.out.println(creature.getName() + " a été retiré de l'enclos car il est mort.");
             }
         }
+
+        // Si une créature a été retirée, mettre à jour le niveau de propreté
+        if (creatureRemoved) {
+            updateCleanliness();
+        }
+    }
+
+    /**
+     * Met à jour le niveau de propreté de l'enclos en fonction de la présence de
+     * créatures mortes.
+     */
+    private void updateCleanliness() {
+        if (hasDeadCreatures()) {
+            setCleanliness(Cleanliness.CORRECT);
+            System.out.println("Le niveau de propreté de l'enclos est maintenant MOYEN en raison de créatures mortes.");
+        }
+    }
+
+    /**
+     * Vérifie s'il y a des créatures mortes dans l'enclos.
+     *
+     * @return true si au moins une créature est morte, sinon false.
+     */
+    private boolean hasDeadCreatures() {
+        for (Creature creature : creatures) {
+            if (!creature.isAlive()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

@@ -250,7 +250,9 @@ public class ZooManager {
                         break;
                     // Ajoutez d'autres cas selon les besoins
                     case 2:
-                        // Autres fonctionnalités
+                        System.out.println("Quelle créature souhaitez-vous Nourir :");
+                        enclosure.displayCreaturesList();
+                        feedCreature(enclosure);
                         break;
                     default:
                         System.out.println("Option invalide. Veuillez choisir à nouveau.");
@@ -266,7 +268,7 @@ public class ZooManager {
     private void displayInsideEnclosureMenu() {
         System.out.println("===== Gérer l' Enclos =====");
         System.out.println("1. Retirer une Creature");
-        System.out.println("2. ");
+        System.out.println("2. Nourir les creatures");
         System.out.println("3. Quitter");
     }
 
@@ -338,4 +340,26 @@ public class ZooManager {
         }
     }
 
+    private void feedCreature(Enclosure enclosure) {
+        List<Creature> creatures = enclosure.getCreatures();
+
+        if (!creatures.isEmpty()) {
+            System.out.println("Choisissez la créature à nourrir :");
+
+            for (int i = 0; i < creatures.size(); i++) {
+                System.out.println((i + 1) + ". " + creatures.get(i).getName());
+            }
+
+            int creatureIndex = scanner.nextInt();
+
+            if (creatureIndex >= 1 && creatureIndex <= creatures.size()) {
+                Creature selectedCreature = creatures.get(creatureIndex - 1);
+                selectedCreature.eat(); // Appelle la méthode eat() de la créature
+            } else {
+                System.out.println("Numéro de créature invalide.");
+            }
+        } else {
+            System.out.println("Aucune créature présente dans l'enclos.");
+        }
+    }
 }

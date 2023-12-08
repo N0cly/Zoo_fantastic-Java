@@ -64,7 +64,7 @@ public class Creature implements Runnable {
                 this.hunger = this.hunger - 1;
                 Thread.sleep(1000);
 
-                if (this.hunger <= 15) {
+                if (this.hunger <= 15 && this.hunger % 5 == 0) {
                     System.out.println("Il est temps de manger pour " + this.name + " (" + this.hunger + " )");
 
                     Thread.sleep(1000);
@@ -248,6 +248,7 @@ public class Creature implements Runnable {
             if (age < 100) {
                 age = age + 1;
                 System.out.println(name + " is now " + age + " years old");
+
             } else if (age == 100 || health == 0) {
                 System.out.println(name + " is now dead");
             } else {
