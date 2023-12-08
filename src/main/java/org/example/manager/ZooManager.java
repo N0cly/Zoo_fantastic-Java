@@ -97,7 +97,8 @@ public class ZooManager {
         System.out.println("===== Gérer les Enclos =====");
         System.out.println("1. Afficher les enclos");
         System.out.println("2. Ajouter un enclos");
-        System.out.println("3. Retour au menu principal");
+        System.out.println("3. Rentrer dans un enclos");
+        System.out.println("4. Retour au menu principal");
     }
 
     /**
@@ -211,14 +212,62 @@ public class ZooManager {
                     addEnclosure();
                     break;
                 case 3:
-                    System.out.println("Retour au menu principal.");
+                    // entrer dans un enclos
+                    displayEnclosureNames(enclosureList);
+                    System.out.print("Choisissez un enclos pour entrer (0 pour revenir) : ");
+                    int selectedEnclosureIndex2 = scanner.nextInt() - 1;
+
+                    if (selectedEnclosureIndex2 >= 0 && selectedEnclosureIndex2 < enclosureList.size()) {
+                        runInsideEnclosureMenu(selectedEnclosureIndex2);
+                    } else if (selectedEnclosureIndex2 != -1) {
+                        System.out.println("Index d'enclos invalide.");
+                    }
                     break;
                 case 4:
-                    System.out.println("EnclosureListe: " + enclosureList.toString());
+                    System.out.println("Retour au menu principal.");
+                    break;
                 default:
                     System.out.println("Option invalide. Veuillez choisir à nouveau.");
             }
-        } while (enclosureChoice != 3);
+        } while (enclosureChoice != 4);
+    }
+
+    private void runInsideEnclosureMenu(int enclosureIndex) {
+        int choice;
+
+        do {
+            if (enclosureIndex >= 0 && enclosureIndex < enclosureList.size()) {
+                displayInsideEnclosureMenu();
+                Enclosure enclosure = enclosureList.get(enclosureIndex);
+                System.out.print("Choisissez une option : ");
+                choice = scanner.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        System.out.println("Quelle créature souhaitez-vous retirer :");
+                        enclosure.displayCreaturesList();
+                        creatureManager.removeCreatureFromEnclosure(enclosure);
+                        break;
+                    // Ajoutez d'autres cas selon les besoins
+                    case 2:
+                        // Autres fonctionnalités
+                        break;
+                    default:
+                        System.out.println("Option invalide. Veuillez choisir à nouveau.");
+                        break;
+                }
+            } else {
+                System.out.println("Index d'enclos invalide.");
+                choice = -1; // Pour continuer la boucle
+            }
+        } while (choice != 3);
+    }
+
+    private void displayInsideEnclosureMenu() {
+        System.out.println("===== Gérer l' Enclos =====");
+        System.out.println("1. Retirer une Creature");
+        System.out.println("2. ");
+        System.out.println("3. Quitter");
     }
 
     /**

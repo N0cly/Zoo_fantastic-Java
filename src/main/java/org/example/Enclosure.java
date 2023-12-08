@@ -203,4 +203,20 @@ public class Enclosure {
     public void setCleanliness(Cleanliness cleanliness) {
         this.cleanliness = cleanliness;
     }
+
+    /**
+     * Displays the names of creatures in the enclosure.
+     */
+    public void displayCreaturesList() {
+        System.out.println("Liste des créatures dans l'enclos " + name + ":");
+        if (!creatures.isEmpty()) {
+            for (int i = 0; i < creatures.size(); i++) {
+                Creature creature = creatures.get(i);
+                System.out.println((i + 1) + ". " + creature.getName());
+            }
+        } else {
+            System.out.println("Aucune créature présente dans l'enclos.");
+        }
+    }
+
 }

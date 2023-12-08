@@ -80,6 +80,23 @@ public class CreatureManager {
         creatures.remove(creature);
     }
 
+    public void removeCreatureFromEnclosure(Enclosure enclosure) {
+        if (!enclosure.getCreatures().isEmpty()) {
+            System.out.print("Choisissez le numéro de la créature à retirer : ");
+            int creatureIndex = scanner.nextInt();
+
+            if (creatureIndex >= 1 && creatureIndex <= enclosure.getNumberOfCreatures()) {
+                Creature creatureToRemove = enclosure.getCreatures().get(creatureIndex - 1);
+                enclosure.removeCreature(creatureToRemove); // Utilise la fonction d'Enclosure pour retirer la créature
+                System.out.println(creatureToRemove.getName() + " a été retiré de l'enclos.");
+            } else {
+                System.out.println("Numéro de créature invalide.");
+            }
+        } else {
+            System.out.println("Aucune créature présente dans l'enclos.");
+        }
+    }
+
     /**
      * Demande et renvoie le nom de la créature saisi par l'utilisateur.
      *
